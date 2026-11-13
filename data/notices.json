@@ -2,7 +2,7 @@
   "schema": 1,
   "rev": 2,
   "changed": false,
-  "generated_at": "2026-11-13T03:42:45.679Z",
+  "generated_at": "2026-11-13T03:47:00.668Z",
   "today": "2026-11-13",
   "refresh_seconds": 600,
   "retention_days": 14,
@@ -13,9 +13,9 @@
       "ok": true,
       "count": 15,
       "parsed": 15,
-      "fetched_at": "2026-11-13T03:42:45.918Z",
+      "fetched_at": "2026-11-13T03:47:01.114Z",
       "error": null,
-      "ms": 239,
+      "ms": 446,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
     },
     {
@@ -24,9 +24,9 @@
       "ok": true,
       "count": 0,
       "parsed": 15,
-      "fetched_at": "2026-11-13T03:42:45.976Z",
+      "fetched_at": "2026-11-13T03:47:01.407Z",
       "error": null,
-      "ms": 58,
+      "ms": 293,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
     },
     {
@@ -35,9 +35,9 @@
       "ok": true,
       "count": 4,
       "parsed": 15,
-      "fetched_at": "2026-11-13T03:42:46.085Z",
+      "fetched_at": "2026-11-13T03:47:01.633Z",
       "error": null,
-      "ms": 109,
+      "ms": 226,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
     },
     {
@@ -46,9 +46,9 @@
       "ok": true,
       "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-13T03:42:46.186Z",
+      "fetched_at": "2026-11-13T03:47:01.690Z",
       "error": null,
-      "ms": 101,
+      "ms": 57,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
@@ -76,9 +76,9 @@
       "name": "班级群消息",
       "ok": true,
       "count": 0,
-      "fetched_at": "2026-11-13T03:42:46.485Z",
+      "fetched_at": "2026-11-13T03:47:01.920Z",
       "error": null,
-      "ms": 299
+      "ms": 230
     }
   ],
   "items": [
@@ -101,7 +101,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-e93f75611d6a",
@@ -122,7 +122,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-585609e77399",
@@ -142,7 +142,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-41452917cf0e",
@@ -163,7 +163,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-710620edd7bc",
@@ -183,7 +183,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-3bf7d58ecc07",
@@ -203,7 +203,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-3e776a8ae15f",
@@ -223,7 +223,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-a82c5457313b",
@@ -243,7 +243,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-eec9cbf02321",
@@ -263,7 +263,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-cc1555d01e82",
@@ -285,7 +285,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-88c67842b3ec",
@@ -306,7 +306,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-104617f61f36",
@@ -326,7 +326,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-273b20bdb091",
@@ -347,7 +347,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-d967daecc715",
@@ -367,7 +367,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-0019580b5403",
@@ -387,7 +387,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     },
     {
       "id": "web-00c256c872a8",
@@ -408,7 +408,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T03:42:46.734Z"
+      "last_seen": "2026-11-13T03:47:02.124Z"
     }
   ],
   "counts": {

@@ -1337,7 +1337,20 @@ async function initSync(){
   try{
     const r = await fetch('api/state', { credentials: 'same-origin', cache: 'no-store' });
     if(r.status === 401){ setSyncStatus('🔒 需要令牌', 'warn', SYNC_NOTE.token); return; }
+    // 静态托管（GitHub Pages / Cloudflare Pages 等）没有 /api/state：
+    // 这不是错误，只是没有跨设备同步，勾选留在本机即可，所以不弹警告条。
+    if(r.status === 404 || r.status === 405){
+      SYNC.available = false;
+      setSyncStatus('📴 本地保存', '', null);
+      return;
+    }
     if(!r.ok) throw new Error('HTTP ' + r.status);
+    const ct = (r.headers && r.headers.get) ? (r.headers.get('content-type') || '') : '';
+    if(ct && ct.indexOf('json') < 0){          // 被托管平台改写成 HTML 的情况
+      SYNC.available = false;
+      setSyncStatus('📴 本地保存', '', null);
+      return;
+    }
     const j = await r.json();
     SYNC.available = true;
     SYNC.rev = j.rev || 0;

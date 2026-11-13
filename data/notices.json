@@ -1,0 +1,419 @@
+{
+  "schema": 1,
+  "rev": 2,
+  "changed": false,
+  "generated_at": "2026-11-13T03:11:22.615Z",
+  "today": "2026-11-13",
+  "refresh_seconds": 600,
+  "retention_days": 14,
+  "sources": [
+    {
+      "id": "jwc-tzgg",
+      "name": "教务处 · 通知公告",
+      "ok": true,
+      "count": 15,
+      "parsed": 15,
+      "fetched_at": "2026-11-13T03:11:23.492Z",
+      "error": null,
+      "ms": 877,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
+    },
+    {
+      "id": "jwc-xsksgg",
+      "name": "教务处 · 学生考试公告",
+      "ok": true,
+      "count": 0,
+      "parsed": 15,
+      "fetched_at": "2026-11-13T03:11:24.627Z",
+      "error": null,
+      "ms": 1134,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
+    },
+    {
+      "id": "jwc-xsswgg",
+      "name": "教务处 · 学生事务公告",
+      "ok": true,
+      "count": 4,
+      "parsed": 15,
+      "fetched_at": "2026-11-13T03:11:24.698Z",
+      "error": null,
+      "ms": 71,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
+    },
+    {
+      "id": "jwc-jcgg",
+      "name": "教务处 · 教材公告",
+      "ok": true,
+      "count": 1,
+      "parsed": 15,
+      "fetched_at": "2026-11-13T03:11:24.760Z",
+      "error": null,
+      "ms": 62,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
+    },
+    {
+      "id": "scse-tzgg",
+      "name": "计算机学院 · 通知公告",
+      "ok": false,
+      "skipped": true,
+      "count": 0,
+      "fetched_at": null,
+      "error": null,
+      "note": "学院站有瑞数 WAF（202 + JS 挑战），直接抓取会被拦；先用 QQ 群消息覆盖，等有镜像/公开栏目再启用。"
+    },
+    {
+      "id": "news-uestc",
+      "name": "成电新闻网 · 讲座与学术",
+      "ok": false,
+      "skipped": true,
+      "count": 0,
+      "fetched_at": null,
+      "error": null,
+      "note": "新闻资讯为主，通知价值低、噪音大；需要讲座/竞赛信息时再启用。"
+    },
+    {
+      "id": "qq-bot",
+      "name": "班级群消息",
+      "ok": true,
+      "count": 0,
+      "fetched_at": "2026-11-13T03:11:24.982Z",
+      "error": null,
+      "ms": 222
+    }
+  ],
+  "items": [
+    {
+      "id": "web-cb3875d43b7a",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "2026年“晨电智能杯”嵌入式设计竞赛 低年级组获奖名单公示",
+      "url": "https://www.jwc.uestc.edu.cn/info/1127/24417.htm",
+      "published": "2026-11-11",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "竞赛"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-e93f75611d6a",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于召开数字教材建设交流研讨会的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1122/24359.htm",
+      "published": "2026-11-10",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "教材"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-585609e77399",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于报送2026年度本科教学工作量的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1128/24356.htm",
+      "published": "2026-11-10",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-41452917cf0e",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于2026年秋季电子科技大学学生科技创新基地-电子设计竞赛校内集训队招新通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1127/24353.htm",
+      "published": "2026-11-09",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "竞赛"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-710620edd7bc",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于举办“创·见·未来”第六届新工科教育学生作品展的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1128/24354.htm",
+      "published": "2026-11-09",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-3bf7d58ecc07",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于公布电子科技大学首批人工智能技术赋能本科教学教改项目结题验收结果的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1128/24351.htm",
+      "published": "2026-11-09",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-3e776a8ae15f",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于2023级本科毕业设计（论文）任务书检查及2022级本科毕业论文档案检查的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1120/24344.htm",
+      "published": "2026-11-05",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-a82c5457313b",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于2026-2027-1学期三、四年级开设体能提升课的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1125/24343.htm",
+      "published": "2026-11-04",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-eec9cbf02321",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于转发《四川省教育厅关于开展省级特色学院建设工作的通知》的通知",
+      "url": "https://www.jwc.uestc.edu.cn/nry.jsp?urltype=news.NewsContentUrl&wbtreeid=1128&wbnewsid=24327",
+      "published": "2026-11-04",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-cc1555d01e82",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "2026年度教育部-华为“智能基座”优秀教师/教材奖励计划申报通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1120/24326.htm",
+      "published": "2026-11-04",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "报名",
+        "教材"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-88c67842b3ec",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于开展2026年工程教育专业认证申请工作的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1128/24325.htm",
+      "published": "2026-11-04",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "报名"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-104617f61f36",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于教育部“智能基座”产教融合协同育人基地2.0金课评选的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1120/24323.htm",
+      "published": "2026-11-03",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-273b20bdb091",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于举办2027年电子科技大学教师教学竞赛的通知",
+      "url": "https://www.jwc.uestc.edu.cn/nry.jsp?urltype=news.NewsContentUrl&wbtreeid=1128&wbnewsid=24319",
+      "published": "2026-11-03",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "竞赛"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-d967daecc715",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "人工智能+本科教学 | 关于召开智慧课程建设工作交流研讨会（第二期）的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1128/23258.htm",
+      "published": "2026-11-02",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-0019580b5403",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于开展2026年本科教学关键岗位考核的通知",
+      "url": "https://www.jwc.uestc.edu.cn/nry.jsp?urltype=news.NewsContentUrl&wbtreeid=1128&wbnewsid=23242",
+      "published": "2026-11-02",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    },
+    {
+      "id": "web-00c256c872a8",
+      "kind": "web",
+      "source": "jwc-xsswgg",
+      "source_name": "教务处 · 学生事务公告",
+      "title": "关于2026-2027-1学期举办“线性代数与空间解析几何疑难分析讲座（一）”的 通知",
+      "url": "https://www.jwc.uestc.edu.cn/nry.jsp?urltype=news.NewsContentUrl&wbtreeid=1116&wbnewsid=23241",
+      "published": "2026-10-30",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "讲座"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-13T02:51:31.907Z",
+      "last_seen": "2026-11-13T03:11:25.184Z"
+    }
+  ],
+  "counts": {
+    "total": 16,
+    "web": 16,
+    "qq": 0
+  }
+}

@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f172a">
+<!-- 手机「添加到主屏幕」用：图标 + manifest（经局域网服务器访问时生效） -->
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>成电 2026秋 · 我的学习台</title>
+<style>
+  :root{
+    --bg:#0b1220; --bg2:#0f172a; --card:#151f35; --card2:#1b2740;
+    --line:#25324f; --txt:#e8eefc; --dim:#8fa1c4; --dim2:#6b7f9f;
+    --acc:#4ea1ff; --acc2:#7c5cff; --ok:#28c98a; --warn:#ffb020; --bad:#ff5d6c;
+    --r:16px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1200px 600px at 12% -10%, #1b2f5c 0%, transparent 55%),
+      radial-gradient(900px 500px at 100% 0%, #2a1f52 0%, transparent 50%),
+      var(--bg);
+    color:var(--txt); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.6; min-height:100vh; padding-bottom:96px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:16px}
+  header{padding:8px 0 12px}
+  .h1{font-size:20px;font-weight:700;letter-spacing:.5px}
+  .h1 small{display:block;font-size:12px;color:var(--dim);font-weight:400;margin-top:2px}
+  .weekbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--dim)}
+  .pill b{color:var(--txt)}
+  .card{background:linear-gradient(180deg,var(--card) 0%,rgba(21,31,53,.72) 100%);
+    border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:12px 0}
+  .card h2{margin:0 0 10px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .card h2 .tag{font-size:11px;font-weight:500;color:var(--dim);background:#0e1729;border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+  /* 倒计时 */
+  .cd{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .cd .box{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+  .cd .n{font-size:24px;font-weight:800;line-height:1.15}
+  .cd .n.small{font-size:16px;font-weight:700}
+  .cd .l{font-size:11.5px;color:var(--dim);margin-top:2px}
+  .cd .box.hot .n{color:var(--bad)}
+  .cd .box.mid .n{color:var(--warn)}
+  .cd .box.calm .n{color:var(--ok)}
+  /* 今日课程 */
+  .today-item{display:flex;gap:12px;align-items:flex-start;padding:10px;border-radius:12px;background:var(--card2);border:1px solid var(--line);margin-bottom:8px}
+  .today-item .t{flex:0 0 78px;font-variant-numeric:tabular-nums;font-size:13px;color:var(--acc);font-weight:700}
+  .today-item .c{font-size:14px;font-weight:600}
+  .today-item .m{font-size:12px;color:var(--dim);margin-top:2px}
+  .today-item.now{border-color:var(--ok);box-shadow:0 0 0 1px rgba(40,201,138,.35), 0 6px 18px -8px rgba(40,201,138,.5)}
+  /* 课表 */
+  .tt{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -14px;padding:0 14px}
+  table{border-collapse:separate;border-spacing:4px;font-size:11.5px;min-width:640px}
+  th,td{padding:6px 6px;border-radius:8px;vertical-align:top}
+  thead th{background:#101a2e;color:var(--dim);font-weight:600;font-size:11.5px;position:sticky;top:0}
+  tbody th{background:#101a2e;color:var(--dim2);font-weight:600;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
+  td.slot{background:#0f1830;border:1px solid var(--line);min-width:74px;height:38px}
+  td.slot.has{background:linear-gradient(180deg,#1e3f74,#182f56);border-color:#2f5da3}
+  td.slot.has .cn{font-weight:700;color:#dbe9ff;display:block}
+  td.slot.has .cm{color:#9fc0ee;font-size:10px;display:block;margin-top:1px}
+  td.slot.today{outline:2px solid var(--ok);outline-offset:-2px}
+  .legend{font-size:11.5px;color:var(--dim);margin-top:8px}
+  /* 待办 */
+  .todo{display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card2);margin-bottom:8px}
+  .todo input[type=checkbox]{width:19px;height:19px;margin:2px 0 0;accent-color:var(--ok);flex:0 0 auto}
+  .todo .txt{flex:1;font-size:13.5px}
+  .todo .txt small{display:block;color:var(--dim);font-size:11.5px;margin-top:2px}
+  .todo.done .txt{opacity:.45;text-decoration:line-through}
+  .badge{font-size:10.5px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--dim);white-space:nowrap}
+  .badge.hot{color:#ffd0d5;background:rgba(255,93,108,.14);border-color:rgba(255,93,108,.45)}
+  .badge.warn{color:#ffe6b8;background:rgba(255,176,32,.14);border-color:rgba(255,176,32,.42)}
+  .badge.ok{color:#baf3dc;background:rgba(40,201,138,.14);border-color:rgba(40,201,138,.42)}
+  /* 成绩条 */
+  .grade-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .grade-row:last-child{border-bottom:0}
+  .grade-row .nm{flex:1;font-size:13.5px}
+  .grade-row .pc{font-weight:800;font-variant-numeric:tabular-nums;font-size:14px;color:var(--acc)}
+  .bar{height:6px;border-radius:99px;background:#0e1729;overflow:hidden;margin-top:6px}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+  /* 链接 */
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  a.link{display:block;text-decoration:none;color:var(--txt);background:var(--card2);border:1px solid var(--line);
+    border-radius:12px;padding:10px;font-size:13px;transition:.15s}
+  a.link:active{transform:scale(.985);background:#22314f}
+  a.link small{display:block;color:var(--dim);font-size:11px;margin-top:2px}
+  /* 链接库 */
+  .lkg{margin-bottom:14px}
+  .lkg:last-child{margin-bottom:0}
+  .lkgt{font-size:12.5px;font-weight:700;color:var(--acc);margin:0 0 7px;display:flex;align-items:center;gap:6px}
+  .lkgt span{font-weight:500;color:var(--dim2);font-size:11px}
+  .lk{display:block;text-decoration:none;color:var(--txt);background:var(--card2);border:1px solid var(--line);
+    border-radius:11px;padding:9px 11px;margin-bottom:6px;transition:.15s}
+  .lk:active{transform:scale(.99);background:#22314f}
+  .lkn{display:block;font-size:13.5px;font-weight:600;line-height:1.45}
+  .lkd{display:block;color:var(--dim);font-size:11.5px;margin-top:3px;line-height:1.5}
+  .tg{display:inline-block;font-style:normal;font-weight:500;font-size:10px;color:var(--warn);
+    background:rgba(255,176,32,.13);border:1px solid rgba(255,176,32,.4);border-radius:999px;
+    padding:0 6px;margin-left:6px;vertical-align:1px}
+  /* 折叠 */
+  details{border:1px solid var(--line);border-radius:12px;background:var(--card2);padding:0 12px;margin-bottom:8px}
+  details[open]{padding-bottom:10px}
+  summary{cursor:pointer;padding:11px 0;font-size:13.5px;font-weight:600;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸";color:var(--acc);margin-right:8px;display:inline-block;transition:.2s}
+  details[open] summary::before{transform:rotate(90deg)}
+  details .body{font-size:13px;color:#cdd9f0}
+  details ul{margin:6px 0 0;padding-left:18px}
+  details li{margin:4px 0}
+  /* 底部导航 */
+  nav{position:fixed;left:0;right:0;bottom:0;background:rgba(11,18,32,.92);backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+  nav .inner{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(8,1fr);gap:2px}
+  nav button{background:transparent;border:0;color:var(--dim);font-size:10px;padding:6px 1px;border-radius:10px;font-family:inherit}
+  nav button .ic{display:block;font-size:16px;margin-bottom:1px}
+  nav button.on{color:var(--txt);background:#1a2743}
+  section[hidden]{display:none}
+  .note{font-size:11.5px;color:var(--dim2);margin-top:10px}
+  .kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0e1729;border:1px solid var(--line);border-radius:6px;padding:1px 5px;font-size:11.5px}
+  .flex{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .btn{background:#1c2b49;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:7px 11px;font-size:12px;font-family:inherit}
+  .btn:active{background:#24365c}
+  /* ===== 设置 / 表单（模板化） ===== */
+  .fld{margin-bottom:13px}
+  .fld > label{display:block;font-size:12.5px;color:var(--dim);margin-bottom:5px}
+  .fld input,.fld textarea{width:100%;background:#0e1729;border:1px solid var(--line);color:var(--txt);
+    border-radius:10px;padding:9px 10px;font-size:13.5px;font-family:inherit}
+  .fld input:focus,.fld textarea:focus{outline:0;border-color:var(--acc)}
+  .fld textarea{min-height:110px;line-height:1.6;resize:vertical;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px}
+  .fld textarea.json{min-height:180px;font-size:12px}
+  .hint{font-size:11.5px;color:var(--dim2);margin-top:5px;line-height:1.6}
+  .hint code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0e1729;border:1px solid var(--line);
+    border-radius:6px;padding:1px 5px;font-size:11px;color:#cdd9f0}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .card.banner{border-color:rgba(78,161,255,.5);background:linear-gradient(180deg,#16274a 0%,rgba(21,31,53,.72) 100%)}
+  .msg{border-radius:10px;padding:8px 10px;font-size:12px;margin-top:9px;white-space:pre-wrap}
+  .msg.err{color:#ffd0d5;background:rgba(255,93,108,.12);border:1px solid rgba(255,93,108,.4)}
+  .msg.ok{color:#baf3dc;background:rgba(40,201,138,.12);border:1px solid rgba(40,201,138,.4)}
+  .msg[hidden]{display:none}
+  /* ===== 通知中心（网站 + QQ 群自动聚合） ===== */
+  nav button{position:relative}
+  nav .dot{position:absolute;top:2px;right:8px;min-width:15px;height:15px;padding:0 3px;border-radius:9px;
+    background:var(--bad);color:#fff;font-size:9.5px;font-style:normal;line-height:15px;text-align:center;font-weight:700}
+  nav .dot[hidden]{display:none}
+  .nf-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+  .nf.on{background:#22314f;border-color:var(--acc);color:#fff}
+  .nt{display:block;text-decoration:none;color:var(--txt);background:var(--card2);border:1px solid var(--line);
+    border-radius:12px;padding:10px 11px;margin-bottom:8px;transition:.15s}
+  .nt:active{background:#22314f}
+  .nt.new{border-color:rgba(78,161,255,.55);box-shadow:0 0 0 1px rgba(78,161,255,.18)}
+  .nt-h{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--dim)}
+  .nt-src{background:#0e1729;border:1px solid var(--line);border-radius:999px;padding:1px 7px;color:var(--acc);white-space:nowrap}
+  .nt-src.qq{color:var(--warn);border-color:rgba(255,176,32,.4)}
+  .nt-date{margin-left:auto;font-variant-numeric:tabular-nums}
+  .nt-new{color:#baf3dc;background:rgba(40,201,138,.16);border:1px solid rgba(40,201,138,.4);border-radius:999px;padding:0 6px}
+  .nt-t{font-size:13.5px;font-weight:600;line-height:1.45;margin-top:4px}
+  .nt-m{font-size:11.5px;color:var(--dim);margin-top:3px;line-height:1.55;white-space:pre-wrap}
+  .nt-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+  .nt-tags i{font-style:normal;font-size:10px;color:var(--dim2);border:1px solid var(--line);border-radius:999px;padding:0 6px}
+  #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(88px + env(safe-area-inset-bottom));z-index:50;
+    max-width:88%;background:#1d2b49;border:1px solid var(--acc);color:var(--txt);border-radius:12px;
+    padding:9px 14px;font-size:13px;box-shadow:0 10px 26px -12px #000;cursor:pointer}
+  #toast[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="h1"><span id="p-title">成电 2026秋 · 我的学习台</span>
+      <small id="p-sub">电子科技大学 · 计算机类 2026 级 · 数据均来自你的 EAMS 与官方课件</small>
+    </div>
+    <div class="weekbar">
+      <span class="pill">今天 <b id="p-today">—</b></span>
+      <span class="pill">教学周 <b id="p-week">—</b></span>
+      <span class="pill" id="p-next">—</span>
+      <span class="pill" id="p-sync">本地模式</span>
+    </div>
+  </header>
+
+  <!-- 同步未启用时把原因直接写在页面上（file:// 打开 / 缺令牌 / 连不上服务器） -->
+  <div class="card banner" id="sync-note" hidden>
+    <h2>🔄 同步未启用 <span class="tag" id="sync-note-tag"></span></h2>
+    <div class="body" id="sync-note-body" style="font-size:13px"></div>
+  </div>
+
+  <!-- ============ 今日 ============ -->
+  <section id="s-today">
+    <div class="card banner" id="cf-guide" hidden>
+      <h2>👋 首次使用 <span class="tag">约 2 分钟</span></h2>
+      <div class="body" style="font-size:13px">
+        这份页面内置了一份<b>示例/个人数据</b>（课表、任务、日期）。想让倒计时与课表对得上你自己的学期，只需在「设置」里做两件事：
+        <ul style="padding-left:18px;margin:8px 0 0">
+          <li>填 <b>3 个日期</b>：第 1 周周一、期中考试日、学期结束日</li>
+          <li>粘贴你的 <b>课表</b>（一行一门，格式见设置页示例）</li>
+        </ul>
+        <div class="note">所有数据只存在你这台设备的浏览器里，不会上传；也可以导出 JSON 分享给同学。</div>
+        <div class="row">
+          <button class="btn" onclick="gotoTab('s-cfg')">去设置</button>
+          <button class="btn" onclick="dismissGuide()">不用了，先这样用</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>⏳ 关键倒计时 <span class="tag" id="cd-note">按官方校历</span></h2>
+      <div class="cd" id="cd-box"></div>
+      <div class="note" id="cd-foot"></div>
+    </div>
+
+    <div class="card">
+      <h2>📅 今天上什么 <span class="tag" id="today-tag"></span></h2>
+      <div id="today-list"></div>
+    </div>
+
+    <div class="card">
+      <h2>✅ 今日三件事 <span class="tag">可勾选，自动保存</span></h2>
+      <div id="daily-list"></div>
+      <div class="flex" style="margin-top:6px">
+        <span class="note" id="daily-stat"></span>
+        <button class="btn" onclick="resetDaily()">重置今日</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 课表 ============ -->
+  <section id="s-tt" hidden>
+    <div class="card">
+      <h2>🗓 本周课表 <span class="tag">EAMS 实测 · 15 节/周</span></h2>
+      <div class="tt"><table id="tt-table"></table></div>
+      <div class="legend">绿框＝今天所在列。格内为「课程 / 教师·教室 / 周次」。节次时间取自学校官方作息表。</div>
+    </div>
+    <div class="card">
+      <h2>🔔 调课 / 放假提醒 <span class="tag" id="exc-count">—</span></h2>
+      <div id="exc-list"></div>
+      <div class="note">未来两周内的例外日。「今日」页会按例外自动切换成对应星期的课表。维护入口：设置 → 例外日。</div>
+    </div>
+    <div class="card">
+      <h2>🕳 每周空档（决定自习怎么排）</h2>
+      <div class="body" style="font-size:13px">
+        <ul style="padding-left:18px;margin:0">
+          <li><b>周一</b>：早英语(1-2)＋上午微积分(3-4)＋晚数据结构(9-10，第7周起) → 只有午后空</li>
+          <li><b>周二</b>：<b>上午全空</b>，下午线代(5-6)＋人类文明赏析(7-8，第11周起) → <b>上午是黄金块</b></li>
+          <li><b>周三</b>：只有 1-2 节微积分 → <b>全天最空 → 主自习日</b></li>
+          <li><b>周四</b>：线代(3-4)＋手球(5-6)＋心理(9，至第14周) → 上午空</li>
+          <li><b>周五</b>：军理(1-2)＋微积分(5-6) → 15:15 之后全空</li>
+          <li><b>周六</b>：<b>全天无课</b> → <b>项目 ＋ 竞赛 ＋ 周复盘</b></li>
+          <li><b>周日</b>：仅晚 9 节心理(至第14周) → 白天全空，可复习</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 任务 ============ -->
+  <section id="s-tasks" hidden>
+    <div class="card">
+      <h2>🤖 群通知自动任务 <span class="tag" id="auto-tag">来自机器人收件箱</span></h2>
+      <div id="auto-tasks"></div>
+      <div class="note">
+        由 <span class="kbd">python tools\parse_bot_inbox.py --emit-js</span> 生成同目录的「学习台任务.js」，
+        每次打开本页自动读取；勾选状态与其他任务一样存在本机浏览器。
+      </div>
+    </div>
+    <div class="card">
+      <h2>📌 本周期任务 <span class="tag">可勾选，自动保存</span></h2>
+      <div id="task-list"></div>
+      <div class="note">分值与截止来自课程 PPT／群消息／校历。红标＝最紧急。这一栏是你手填的，不会被机器人覆盖。</div>
+    </div>
+    <div class="card">
+      <h2>🔴 红线与确定性得分</h2>
+      <div class="body" style="font-size:13px">
+        <ul style="padding-left:18px;margin:0">
+          <li><b>严禁抄袭</b>：抄袭与被抄袭<b>均 0 分</b>，第三次抄袭<b>取消考试资格</b>（数据结构）</li>
+          <li><b>座位分</b>：坐前两排 <b>+0.5/次</b>，第 9 排及后 <b>−0.5/次</b>；一学期累计可达 ±8 分</li>
+          <li><b>未评教不能选课</b>；成绩单如实记录全部成绩，谨慎退课</li>
+          <li><b>SPOC 陷阱</b>：必须选带「SPOC」标记的课程、只从老师给的链接进入，否则<b>成绩无法导出</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 通知（网站 + QQ 群自动聚合） ============ -->
+  <section id="s-notice" hidden>
+    <div class="card">
+      <h2>📡 通知中心 <span class="tag" id="notice-tag">未连接</span></h2>
+      <div class="nf-bar">
+        <button class="btn nf on" data-nf="all" onclick="filterNotices('all')">全部</button>
+        <button class="btn nf" data-nf="web" onclick="filterNotices('web')">网站</button>
+        <button class="btn nf" data-nf="qq" onclick="filterNotices('qq')">群消息</button>
+        <button class="btn nf" data-nf="new" onclick="filterNotices('new')">只看新</button>
+        <span class="note" id="notice-stat" style="margin:0"></span>
+      </div>
+      <div id="notice-list"></div>
+      <div class="note" id="notice-foot"></div>
+    </div>
+    <div class="card">
+      <h2>🔌 采集状态 <span class="tag">网站 + 群消息</span></h2>
+      <div id="notice-sources"></div>
+      <div class="row">
+        <button class="btn" onclick="refreshNotices(true)">立即刷新</button>
+        <button class="btn" onclick="markNoticesRead()">全部标为已读</button>
+      </div>
+      <div class="note">
+        网站来源：教务处通知公告 / 学生考试公告 / 学生事务公告 / 教材公告，服务器每 10 分钟自动采集一次；
+        群消息来自官方 QQ 机器人收件箱，机器人不在线时只显示已收到的历史消息。<br>
+        页面每 60 秒检查一次新版本：有新内容会弹提示、导航亮红点；点开本页即视为已读。
+        file:// 双击打开时无法自动更新，请用「一键启动学习台.bat」。
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 课程 ============ -->
+  <section id="s-course" hidden>
+    <div class="card">
+      <h2>🎯 本学期课程与学分 <span class="tag">EAMS 实测 · 约 20.5 学分</span></h2>
+      <div id="course-list"></div>
+    </div>
+    <div class="card">
+      <h2>📊 成绩构成（已确认）</h2>
+      <div id="grade-list"></div>
+    </div>
+    <div class="card">
+      <h2>🧮 绩点换算 <span class="tag">85 分＝满绩 4.0</span></h2>
+      <div class="body" style="font-size:13px">
+        规则：<b>课程最终分 ≥85 即为满绩 4.0</b>；低于 85，<b>每低 1 分扣 0.1</b>；不赋分。
+        <div class="flex" style="margin-top:10px;gap:10px">
+          <input id="gp-in" type="number" min="0" max="100" placeholder="输入分数，如 82"
+            style="flex:1;background:#0e1729;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:9px;font-size:14px;font-family:inherit">
+          <span class="badge ok" id="gp-out" style="font-size:13px">—</span>
+        </div>
+        <div class="note">提示：<b>85 以上不再加分</b>，所以把 78 分的课提到 85（+0.7）远比把 92 冲到 97 划算。</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>🔗 网站与平台直达 <span class="tag" id="link-count">已验活</span></h2>
+      <div class="note" style="margin:0 0 10px">
+        以下链接已逐个验活：可点击的直接跳转；标「需登录」的要用统一身份认证；标「校园网」的校外需先连 VPN。
+      </div>
+      <div id="links-box"></div>
+    </div>
+  </section>
+
+  <!-- ============ 知识库 ============ -->
+  <section id="s-info" hidden>
+    <div class="card">
+      <h2>📚 课程要求速查</h2>
+      <details open>
+        <summary>数据结构与算法 I（平时 40%＋机考 30%＋笔试 30%）</summary>
+        <div class="body">
+          <ul>
+            <li>平时 40 分＝作业 30（希冀编程 5＋SPOC与课堂互动 5＋<b>第3~6章四次机考测验 20</b>）＋实验 10（4 基础 6＋1 综合 4）</li>
+            <li>期末：<b>闭卷机考 30 分</b> ＋ <b>一页纸开卷笔试 30 分</b></li>
+            <li>机考测验：<b>不能上外网、不能带电子设备</b></li>
+            <li>希冀：<span class="kbd">121.48.164.163</span> 用户名＝学号，初始密码 <span class="kbd">Uestc12345678</span>；可重复提交刷分，但输入输出必须完全一致</li>
+            <li>SPOC 预习：<a href="https://www.icourse163.org/" target="_blank">icourse163</a>，账号密码均为学号；<b>预习内容课堂不会重讲</b></li>
+            <li>综合大实验报告须含 <b>AI 工具使用说明</b>（场景/过程/效果评估）＋ PPT</li>
+            <li>断点调试「每人必须通过检查」；先设计（Raptor/AI）再写代码</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>微积分Ⅰ（平时30＋期中20＋期末50）</summary>
+        <div class="body">
+          <ul>
+            <li>平时 30%＝平时作业（含<b>纸质</b>单元检测）20%＋<b>MOOC 单元检测 5%</b>＋课堂考核 5%</li>
+            <li>平台：《微积分（一）》SPOC（本学期）与《微积分（二）》（下学期）</li>
+            <li>⚠️ <b>只有老师通知并给出链接的测验才计入平时分</b>；其它未通知测试不计分；从非老师链接进入有成绩无法导出风险</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>线性代数与空间解析几何Ⅰ（平时30＋期中20＋期末50）</summary>
+        <div class="body">
+          <ul>
+            <li>平时 30%＝平时作业＋<b>单元检测题</b>＋<b>SPOC 课程成绩</b>（老师 09-16 群消息确认）</li>
+            <li>SPOC 成绩＝<b>单元检测 40% ＋ SPOC 期末 60%</b>；单元检测每章一次、<b>3 次机会取最好</b>；SPOC 期末<b>仅 1 次</b></li>
+            <li>⚠️ 必须选带「SPOC」标记的学校专有课程，否则成绩无法导出登记</li>
+            <li>线代数字课程含<b>教材电子版</b>（课件内微信扫码）</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>通用英语（平时 60%＋期末 40%）· 本学期目标含通过 CET4</summary>
+        <div class="body">
+          <ul>
+            <li>平时：课堂报告15%｜作业20%｜课堂表现20%｜词汇10%｜口语10%｜<b>U校园听力15%</b>｜词达人10%</li>
+            <li>听力实训：U 校园 6 单元、每 2 周 1 个；词汇实训：成电慕课 10 套×20 题；词达人每单元 1 次</li>
+            <li><b>期末口语测试在第 15 周最后一次课</b>，话题≈U校园听力教材前 6 单元</li>
+            <li>教材必须<b>正规渠道、一书一码</b>，盗版/二手无法进平台</li>
+            <li>考过六级 580+／雅思 6.5+／托福 79+ 或可申请第四学期免听免修（以正式文件为准）</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>心理健康与创新能力（线上线下混合）</summary>
+        <div class="body">
+          <ul>
+            <li>线上 8 主题＋线下 8 主题；含<b>小组心理情景剧创作</b></li>
+            <li>已发生：小组建立（选组长、口号、讨论纸投稿雨课堂）</li>
+            <li>课表时间：周三 19:30、周六 19:30（苏艳芳）</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>军事理论（2 学分 / 36 学时）· 第 13 周结束</summary>
+        <div class="body"><ul><li>超星平台：视频进度＋章节测验，建议期中前刷完，别拖到期末</li><li>课表：周四 08:30 品学楼 B413（第 4、7-13 周）</li></ul></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>🗓 学期关键节点 <span class="tag">随内置数据</span></h2>
+      <div class="body" style="font-size:13px">
+        <ul style="padding-left:18px;margin:0">
+          <li>第 1 周：2026-08-31 开课</li>
+          <li>第 4 周：多数课程起（9/21 起）</li>
+          <li><b>第 6 周</b>：10/6（内置数据的时间点）</li>
+          <li><b>第 10 周 11-07（周六）：期中考试</b> —— 线性代数 14:00-15:30 ｜ 微积分Ⅰ 16:30-18:00（官方考试安排）</li>
+          <li>第 7 周起：数据结构出现在周一晚第 9-10 节</li>
+          <li>第 11 周起：人类文明经典赏析出现在周二第 7-8 节（姜海）</li>
+          <li>第 14 周后：心理健康与创新能力结课（周四/周日晚）</li>
+          <li>第 15-17 周：周一晚新增微积分（期末强化）</li>
+          <li>第 15 周：英语期末口语测试</li>
+          <li>第 18 周：本学期最后一次课</li>
+          <li><b>第 19-20 周：考试周（至 2027-01-17 学期结束）</b></li>
+          <li>寒假：2027-01-18 ~ 02-28</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ 待你核对 <span class="tag">个人项 · 这一份是内置示例</span></h2>
+      <div class="body" style="font-size:13px">
+        <ul style="padding-left:18px;margin:0">
+          <li>希冀平台<b>第一章作业</b>（约 9/30 到期）是否已完成</li>
+          <li>SPOC <b>第二章</b>视频＋检测题（约 9/26）是否已完成</li>
+          <li><b>四六级报名截止</b>（本学期唯一错过不可补报的节点）</li>
+          <li>线代「单元检测题」是否另有课堂检测（与 SPOC 内的并列）</li>
+          <li>10-10 是否按周三课表调课</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 平台 ============ -->
+  <section id="s-platform" hidden>
+    <div class="card">
+      <h2>🏃 步道乐跑 <span class="tag">体育 / 课外锻炼</span></h2>
+      <div class="body" style="font-size:13px">
+        <b>第一步：打开 APP 的「乐跑规则」看你本学期的要求</b>（手册里的是示例规则，不是你的标准）。
+        <div style="margin-top:10px;background:#0e1729;border:1px solid var(--line);border-radius:10px;padding:10px">
+          <div style="color:var(--dim);font-size:12px">示例规则（仅供理解格式）</div>
+          <ul style="padding-left:18px;margin:6px 0 0">
+            <li>有效时间：<b>05:00 – 23:00</b></li>
+            <li>单次里程：<b>0.20 km 起</b>，<b>最多只计 1.00 km</b></li>
+            <li>配速：<b>3'00"–30'00"</b>／km；需经过 <b>2 个打卡点</b></li>
+            <li><b>每日上限 1 次</b>有效</li>
+            <li>示例学期目标：50 次</li>
+          </ul>
+        </div>
+        <div class="note">
+          ⚠️ 跑步途中发现作弊（载具或器械代替步行）→ <b>取消成绩</b>。<br>
+          安全提示：身体不适／睡眠不足／疲劳／感冒／高血压／心脏病等情况<b>不建议运动</b>。<br>
+          体育成绩查询：「发现」→「课程管理」→「体育成绩」；申诉：「我的」→「帮助与反馈」→「在线反馈」。
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🌳 智慧树 / 知到 <span class="tag">线上课程</span></h2>
+      <div class="body" style="font-size:13px">
+        <b>登录</b>：www.zhihuishu.com 或「知到」APP → 选学校 → 学号 + 初始密码
+        <span class="kbd">Zhihuishu@学号后六位</span>（Z 大写；学号不足六位则用全部学号）<br>
+        → 身份认证（验姓氏、绑手机号、改密码）→ <b>确认课程</b>
+        <div style="margin-top:10px;background:#1d2b12;border:1px solid #3d5a25;border-radius:10px;padding:10px">
+          🔴 <b>角标必须是「共享课／智慧课程」</b>；角标是「公开课」则<b>不正确</b>。<br>
+          <b>课程运行结束前没有报到确认课程 → 无法参加线上考试。</b>
+        </div>
+        <div style="margin-top:10px">
+          <b>总成绩 ＝ 平时成绩 ＋ 平时测试 ＋ 见面课 ＋ 期末考试</b>（比例以学校规定为准）
+          <ul style="padding-left:18px;margin:6px 0 0">
+            <li><b>学习进度分</b>＝看视频 ＋ <b>做章测试</b></li>
+            <li><b>学习习惯分</b>：单日视频 <b>≥25 分钟</b>得当日分（建议 25–30 分钟）；仅计教程视频；次日上午更新</li>
+            <li><b>问答互动分</b>：有效提问＋有效回答＋获得有效回答</li>
+          </ul>
+        </div>
+        <div class="note">
+          ⚠️ 无效互动：灌水/抄袭/重复帖、<b>回答字数 ≤3</b>、截止后发布（最后一天请 <b>23:45 前</b>）、回复历史学期问题。<br>
+          🔴 <b>刷帖处罚</b>：本学期禁言，且<b>本学期所有课程都无法参与互动问答</b>。<br>
+          🔴 <b>考试</b>：只有一次机会；<b>试卷一打开就开始倒计时</b>，关闭网页/APP 也会继续，时间到自动提交。<br>
+          <b>章测试</b>：截止后无法提交；每章 <b>3 次重做</b>，以最后一次为准；可看对错。<br>
+          <b>见面课</b>：回放可能由多段视频组成，<b>须全部看完</b>；课后测试<b>只有 1 次</b>且无查看答案。
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🧠 心理健康与创新能力 <span class="tag">线上线下混合</span></h2>
+      <div class="body" style="font-size:13px">
+        线上 8 主题（绪论/自我与人格/情绪健康与管理/人际关系/家庭关系/爱情与性心理上下/学习与发展/危机与生命意义）。<br>
+        线下 8 主题 ＋ <b>小组心理情景剧创作</b>。<br>
+        课表：周三 19:30（品学楼A211）、周六 19:30（苏艳芳）。<br>
+        平台学习按上方「智慧树」规则执行（<b>每日 ≥25 分钟视频 ＋ 章测试</b>）。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📋 平台任务（可勾选）</h2>
+      <div id="plat-list"></div>
+    </div>
+  </section>
+
+  <!-- ============ 设置（模板化） ============ -->
+  <section id="s-cfg" hidden>
+    <div class="card">
+      <h2>⚙️ 配置向导 <span class="tag">改完点保存，不用看代码</span></h2>
+      <div class="body">
+        <div class="note" style="margin:0 0 12px">
+          这一页改的是「个人层」：日期、课表、任务。数据保存在本机浏览器的 <code>localStorage</code>，不上传服务器。
+        </div>
+
+        <div class="fld"><label>页面标题</label><input id="cf-title" type="text" placeholder="例：XX大学 2026秋 · 我的学习台"></div>
+        <div class="fld"><label>副标题</label><input id="cf-sub" type="text" placeholder="例：计算机类 2026 级 · 数据来自教务系统"></div>
+
+        <div class="fld">
+          <label>第 1 周 周一</label><input id="cf-start" type="date">
+          <div class="hint">用来算「今天是第几教学周」。填错整周号都会偏。</div>
+        </div>
+        <div class="fld">
+          <label>期中考试日</label><input id="cf-mid" type="date">
+          <div class="hint">顶部「距期中 N 天」与倒计时第一格用它。</div>
+        </div>
+        <div class="fld">
+          <label>期末周起始日</label><input id="cf-final" type="date">
+          <div class="hint">一般填考试周第一周的周一。</div>
+        </div>
+        <div class="fld">
+          <label>学期结束日</label><input id="cf-end" type="date">
+          <div class="hint">校历上最后一教学周的周日。</div>
+        </div>
+        <div class="fld">
+          <label>倒计时标签说明（可留空）</label><input id="cf-calnote" type="text" placeholder="例：按官方校历">
+        </div>
+
+        <div class="fld">
+          <label>课表（一行一门课）</label>
+          <textarea id="cf-sch" spellcheck="false"></textarea>
+          <div class="hint">
+            格式：<code>周一 5 课程名 | 教师 | 教室 | 4-19</code><br>
+            星期可写 <code>周一</code>／<code>星期一</code>／<code>1</code>（1＝周一，7＝周日）；节次可写 <code>9</code>、<code>9,10</code> 或 <code>9-10</code>；<br>
+            后三段（教师／教室／周次）可留空但竖线要保留；<code>#</code> 开头的行是注释，会被忽略。
+          </div>
+        </div>
+
+        <div class="fld">
+          <label>例外日 · 调课 / 放假（一行一天）</label>
+          <textarea id="cf-exc" spellcheck="false" placeholder="2026-10-10 调课 周三 调休补课&#10;2026-10-11 停课 校运会"></textarea>
+          <div class="hint">
+            格式：<code>日期 类型 [按周几] 说明</code><br>
+            类型写 <code>调课</code>（必须跟「按周几上」，可写 <code>周三</code>／<code>3</code>）或 <code>停课</code>／<code>放假</code>（不用写星期）。<br>
+            例：<code>2026-10-10 调课 周三 调休补课</code>　<code>2026-10-11 停课 校运会</code>；<code>#</code> 开头为注释。
+          </div>
+        </div>
+
+        <div class="fld">
+          <label>本周期任务（一行一条）</label>
+          <textarea id="cf-task" spellcheck="false"></textarea>
+          <div class="hint">格式：<code>最紧急 | 任务标题 | 补充说明</code>；级别可写 <code>最紧急</code>／<code>本周</code>／<code>常规</code>（或 hot／warn／ok）。</div>
+        </div>
+
+        <div class="fld">
+          <label>平台任务（一行一条）</label>
+          <textarea id="cf-plat" spellcheck="false"></textarea>
+          <div class="hint">格式同上。任务按<b>顺序编号</b>（t1…／p1…），调整顺序或删行会让对应勾选记录失效。</div>
+        </div>
+
+        <div class="row">
+          <button class="btn" onclick="saveSettings()">💾 保存并刷新</button>
+          <button class="btn" onclick="resetChecks()">清空所有勾选</button>
+          <button class="btn" onclick="restoreDefaults()">恢复内置默认</button>
+        </div>
+        <div class="msg" id="cf-msg" hidden></div>
+        <div class="note">「课程与学分」「成绩构成」「链接库」属于通用层，不经这一页修改；需要改就导出 JSON 后编辑对应字段再导入。</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📦 配置导入 / 导出 <span class="tag">分享给同学用这个</span></h2>
+      <div class="body">
+        <div class="note" style="margin:0 0 10px">
+          导出的 JSON 含日期、课表、任务、课程、成绩构成与链接库。同学打开同一个 HTML → 本页 → 粘贴 → 点「应用」，就能得到与你一致的课表面板。
+        </div>
+        <div class="row" style="margin-top:0">
+          <button class="btn" onclick="exportConfig()">⬇️ 生成配置 JSON</button>
+          <button class="btn" onclick="copyConfig()">📋 复制</button>
+          <button class="btn" onclick="downloadConfig()">💾 下载 .json</button>
+          <button class="btn" onclick="applyImport()">✅ 应用上方 JSON</button>
+        </div>
+        <div class="fld" style="margin-top:10px">
+          <textarea id="cf-json" class="json" spellcheck="false" placeholder="点「生成配置 JSON」会在这里显示；或把同学给你的 JSON 粘进来后点「应用上方 JSON」"></textarea>
+        </div>
+        <div class="msg" id="cf-msg2" hidden></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<nav><div class="inner">
+  <button class="on" data-tab="s-today"><span class="ic">🏠</span>今日</button>
+  <button data-tab="s-tt"><span class="ic">🗓</span>课表</button>
+  <button data-tab="s-tasks"><span class="ic">✅</span>任务</button>
+  <button data-tab="s-notice"><span class="ic">📡</span>通知<i class="dot" id="notice-dot" hidden></i></button>
+  <button data-tab="s-platform"><span class="ic">🏃</span>平台</button>
+  <button data-tab="s-course"><span class="ic">📊</span>课程</button>
+  <button data-tab="s-info"><span class="ic">📚</span>速查</button>
+  <button data-tab="s-cfg"><span class="ic">⚙️</span>设置</button>
+</div></nav>
+<div id="toast" hidden onclick="gotoTab('s-notice')"></div>
+
+<!-- 机器人自动任务（由 tools/parse_bot_inbox.py --emit-js 生成）
+     ⚠️ 这个文件不存在时页面照常工作，只是「任务」页会提示去生成。 -->
+<script src="学习台任务.js"></script>
+<script>
+/* =====================================================================
+   ⚠️ 下面是「内置默认数据」。换成你自己的学期有两条路，都不用改代码：
+     ① 打开页面 → 底部「设置」标签 → 填日期 + 粘贴课表 → 保存并刷新
+     ② 同学给你一份配置 JSON → 设置页 → 粘贴 → 点「应用上方 JSON」
+   个人层（设置页可视化编辑）：TERM_START / MIDTERM / FINAL_WEEK / TERM_END
+                              SCHEDULE / TASKS / PLATFORM / META
+   通用层（全校通用，走 JSON 导入）：COURSES / GRADES / LINKS
+   ===================================================================== */
+let TERM_START  = '2026-08-31';   // 第1周周一（官方校历）
+let MIDTERM     = '2026-11-07';   // 期中考试（官方考试安排确认：线代14:00-15:30、微积分Ⅰ16:30-18:00）
+let FINAL_WEEK  = '2027-01-04';   // 第19周周一（期末周开始）
+let TERM_END    = '2027-01-17';   // 第20周周日
+let META = {
+  title  : '成电 2026秋 · 我的学习台',
+  sub    : '电子科技大学 · 计算机类 2026 级 · 数据均来自你的 EAMS 与官方课件',
+  calNote: '按官方校历'
+};
+
+// 节次 → 时间
+const PERIODS = {
+  1:'08:30-09:15',2:'09:20-10:05',3:'10:20-11:05',4:'11:10-11:55',
+  5:'14:30-15:15',6:'15:20-16:05',7:'16:20-17:05',8:'17:10-17:55',
+  9:'19:30-20:15',10:'20:20-21:05',11:'21:10-21:55',12:'22:00-22:45'
+};
+// 真实课表（EAMS）——day 1=周一 … 7=周日；节次为"两节连排"（第一、二节 = p:[1,2]）
+// 2026-10-09 按 EAMS 课表（第6~18周逐周核对）整体修正：原数据整体错开了一天
+let SCHEDULE = [
+  {day:1,p:[1,2], c:'通用英语（基础）',        t:'熊宣东',r:'品学楼C421',w:'6-18'},
+  {day:1,p:[3,4], c:'微积分Ⅰ',                t:'米文',  r:'品学楼B408',w:'6-18'},
+  {day:1,p:[7,8], c:'微积分Ⅰ（期末强化）',      t:'米文',  r:'品学楼B408',w:'15-17'},
+  {day:1,p:[9,10],c:'数据结构与算法I',         t:'卢光辉',r:'基础实验大楼504',w:'7-17'},
+  {day:2,p:[5,6], c:'线性代数与空间解析几何Ⅰ', t:'于佳丽',r:'品学楼B308',w:'6-18'},
+  {day:2,p:[7,8], c:'人类文明经典赏析',        t:'姜海',  r:'品学楼C212',w:'11-18'},
+  {day:3,p:[1,2], c:'微积分Ⅰ',                t:'米文',  r:'品学楼B408',w:'6-18'},
+  {day:4,p:[3,4], c:'线性代数与空间解析几何Ⅰ', t:'于佳丽',r:'品学楼B308',w:'6-18'},
+  {day:4,p:[5,6], c:'手球A（大学体育）',       t:'叶松',  r:'',          w:'6-18'},
+  {day:4,p:[9],   c:'心理健康与创新能力',      t:'苏艳芳',r:'品学楼A211',w:'6-14'},
+  {day:5,p:[1,2], c:'军事理论',                t:'',      r:'品学楼B413',w:'6-18'},
+  {day:5,p:[5,6], c:'微积分Ⅰ',                t:'米文',  r:'品学楼B408',w:'6-18'},
+  {day:7,p:[9],   c:'心理健康与创新能力',      t:'苏艳芳',r:'',          w:'6-14'}
+];
+
+// 例外日（调课 / 放假）：一行一条，设置页可编辑，也会跨设备同步
+// 格式： 2026-10-10 调课 周三 调休补课      ｜      2026-10-11 停课 校运会
+let EXCEPTIONS = [];
+
+// 课程与学分（EAMS 实测）
+let COURSES = [
+  {n:'微积分Ⅰ',            cr:6,   code:'D1100160', note:'96学时｜每周6节（周一/三/五）'},
+  {n:'线性代数与空间解析几何Ⅰ',cr:4, code:'D1100540', note:'64学时｜含 SPOC'},
+  {n:'数据结构与算法 I',     cr:2.5, code:'G0802525', note:'40学时｜战略价值最高'},
+  {n:'军事理论',            cr:2,   code:'M9800120', note:'36学时｜18周仍在课表（原稿"13周结束"有误）'},
+  {n:'军事训练',            cr:2,   code:'S9800120', note:'112学时｜入学阶段'},
+  {n:'通用英语（基础/提高/拓展 三选一）', cr:2, code:'M1705020等', note:'平时占60%'},
+  {n:'通用英语 I 实训实践',  cr:0,   code:'M1705300', note:'听力6单元＋词汇10套'},
+  {n:'计算机导论',          cr:1,   code:'F0800110', note:'按分流专业安排'},
+  {n:'国家安全教育',        cr:1,   code:'T6000110', note:'建议修读'}
+];
+
+// 成绩构成
+let GRADES = [
+  {n:'数据结构与算法 I', parts:[['平时考核',40],['期末机考',30],['期末笔试',30]]},
+  {n:'微积分Ⅰ',        parts:[['平时作业(含纸质检测)',20],['MOOC单元检测',5],['课堂考核',5],['期中(闭卷)',20],['期末(闭卷)',50]]},
+  {n:'线性代数Ⅰ',       parts:[['平时(作业+单元检测+SPOC)',30],['期中',20],['期末',50]]},
+  {n:'通用英语',        parts:[['平时',60],['期末',40]]}
+];
+
+// 任务（可勾选）
+let TASKS = [
+  {id:'t1', g:'hot',  t:'四六级报名截止 —— 盯群通知', s:'本学期唯一「错过不可补报」的节点'},
+  {id:'t2', g:'hot',  t:'希冀平台 第一章作业 是否已交', s:'课件要求两周内完成（约 9/30），请核对'},
+  {id:'t3', g:'hot',  t:'SPOC 第二章 视频＋检测题 是否已完成', s:'课件要求第4周上课前一天（约 9/26）'},
+  {id:'t4', g:'hot',  t:'完成微积分（一）SPOC 实名认证并加课', s:'icourse163 · UESTC-1486371172'},
+  {id:'t5', g:'hot',  t:'完成线代 SPOC 实名认证并加课', s:'⚠️ 必须选带 SPOC 标记的课，否则成绩无法导出'},
+  {id:'t6', g:'hot',  t:'期中备考（4 周倒排）：线代→微积分→数据结构', s:'11-07 期中：线代 14:00-15:30、微积分Ⅰ 16:30-18:00（同日，间隔仅1小时）'},
+  {id:'t7', g:'hot',  t:'查往年期中题 ＋ 建两个错题本（线代/微积分）', s:'题型决定复习方向；备考窗口 26 天'},
+  {id:'t8', g:'warn', t:'U校园听力 6 单元（每2周1个）', s:'占英语平时 15%'},
+  {id:'t9', g:'warn', t:'成电慕课 词汇 10 套×20 题', s:'占英语平时 10%'},
+  {id:'t10', g:'warn', t:'词达人 每单元至少 1 次练习和测试', s:'占英语平时 10%'},
+  {id:'t11',g:'warn', t:'数据结构 4 个基础实验（希冀平台）', s:'占平时 6 分'},
+  {id:'t12',g:'warn', t:'数据结构 1 个综合大实验＋报告（含AI使用说明）＋PPT', s:'占平时 4 分'},
+  {id:'t13',g:'ok',   t:'每周五：项目实践 ＋ 竞赛专题 ＋ 周复盘', s:'周五全天无课'},
+  {id:'t14',g:'ok',   t:'每周日：只复习，不排新任务', s:'周日只有第9节心理课（至14周），白天全空'},
+  {id:'t15',g:'ok',   t:'期末务必完成 学生评教', s:'未评教不能选课'},
+  {id:'t16',g:'ok',   t:'下学期选择：离散数学(普通/高级)、C++/Java、新生项目课', s:'限选课一旦通过不可替换'},
+
+  // —— 以下为《课程替代与自学方案 v1.0》替代路线节点（阶段 B/C/D 与选课赚分规则）——
+  {id:'t17',g:'hot',  t:'【替代B】期中后 10-18 启动 MIT Missing Semester', s:'20h，6 周内完结；先学工具链，给后续所有学习提速'},
+  {id:'t18',g:'warn', t:'【替代B】CS61B 完成 lab ＋ 1 个 project', s:'与数据结构课内同步，不另起炉灶'},
+  {id:'t19',g:'warn', t:'【替代B】算法线：每周 8~12 题，题解入公开 GitHub 仓库', s:'与数据结构实验同一个仓库：课内分＋竞赛＋简历＋活跃度'},
+  {id:'t20',g:'ok',   t:'每周日：更新「替代资源进度」＋「时间账本」两张表', s:'任一科预估低于目标分，立即调整配额'},
+  {id:'t21',g:'warn', t:'【寒假D】微积分Ⅱ 预习 25h（MIT 18.02 / 宋浩）', s:'前 2 章题目独立做完；下学期该课 5 学分'},
+  {id:'t22',g:'warn', t:'【寒假D】离散数学预习 20h（MIT 6.042J，20 道证明题）', s:'免费讲义＋习题；为下学期 3.5 学分课打底'},
+  {id:'t23',g:'warn', t:'【寒假D】计算机组成预习 25h（Nand2Tetris，造出 ALU）', s:'为下学期计组 I（3.5＋实验1）打底'},
+  {id:'t24',g:'warn', t:'【寒假D】一个小项目上线（20h，可演示的 GitHub 仓库）', s:'双轨共用：简历项目＋创新与拓展学分'},
+  {id:'t25',g:'hot',  t:'大一下选课前：打电话核实挑战性课程是否加权（028-61831482）', s:'离散/高级离散二选一取最高；加权×1.1 但注1＋注2 合计≤3 门'},
+  {id:'t26',g:'ok',   t:'【替代C】期末前两周：自学降到每日 1 题', s:'期末优先；替代方案第 7.1 节阶段 C'},
+  {id:'t27',g:'hot',  t:'确认：线代平时是否真有考勤（英语已确认：按发言加★记分）', s:'只点名 4 门也不等于其余可不去；线代保守按 A 档执行'},
+  {id:'t28',g:'hot',  t:'英语课：每节至少主动回答 1 次问题，拿★（课堂表现20%）', s:'抢星制——到场不发言≈0分；总评 12 分只靠举手，性价比最高'},
+  {id:'t29',g:'warn', t:'问英语老师：多少颗★算课堂表现满分？（绝对阈值还是排名）', s:'决定每周要抢几颗星'},
+  {id:'t30',g:'ok',   t:'打字练习：英文盲打 + 编程符号（每天 10 分钟，2-4 周一次性投资）', s:'机考考「编程速度与调试」；目标 ≥50WPM 且能盲打 {}[]()<>;:"'}
+];
+
+// 平台任务（乐跑 / 智慧树）
+let PLATFORM = [
+  {id:'p1', g:'hot',  t:'乐跑：下载注册 → 提交身份认证（学生）', s:'应用商店搜「步道乐跑」'},
+  {id:'p2', g:'hot',  t:'乐跑：打开 APP「乐跑规则」确认本学期要求', s:'时间/里程/配速/总次数——以 APP 内为准'},
+  {id:'p3', g:'warn', t:'乐跑：按周完成跑步（每日仅计 1 次有效）', s:'越早开始越轻松，别拖到期末'},
+  {id:'p4', g:'ok',   t:'乐跑：完成一次后查「发现→课程管理→体育成绩」', s:'确认成绩是否记录成功'},
+  {id:'p5', g:'hot',  t:'智慧树：登录 + 身份认证 + 确认课程', s:'学号 + Zhihuishu@学号后六位'},
+  {id:'p6', g:'hot',  t:'智慧树：核对课程角标＝共享课/智慧课程', s:'⚠️ 公开课不正确；未确认课程无法参加线上考试'},
+  {id:'p7', g:'warn', t:'智慧树：查「成绩分析」记下应需规律学习天数', s:'平时分攻略在此'},
+  {id:'p8', g:'warn', t:'智慧树：每日视频 ≥25 分钟 ＋ 按期完成章测试', s:'学习习惯分按天累计，章测试截止后无法提交'},
+  {id:'p9', g:'warn', t:'智慧树：见面课直播/回放（多段视频须全部看完）＋课后测试', s:'课后测试仅 1 次且无查看答案'},
+  {id:'p10',g:'hot',  t:'智慧树：期末考试——准备充分后再打开试卷', s:'🔴 打开即倒计时，关闭也继续，时间到自动提交'},
+  {id:'p11',g:'ok',   t:'智慧树：关注「课程提醒」公众号并绑定账号', s:'避免错过 deadline'}
+];
+
+// 网站链接库（已逐条验活）
+let LINKS = [
+  {g:'🏫 校内系统（每周一巡检）', items:[
+    {n:'教务处', u:'https://www.jwc.uestc.edu.cn/', d:'考试/选课/报名通知；校历与培养方案都在这', tag:''},
+    {n:'EAMS 教务系统', u:'https://eams.uestc.edu.cn/', d:'课表·成绩·考试·平时成绩查询·学生评教', tag:'需登录'},
+    {n:'学校主页', u:'https://www.uestc.edu.cn/', d:'校级通知与新闻', tag:''},
+    {n:'计算机学院（网安学院）', u:'https://www.scse.uestc.edu.cn/', d:'学院通知、推免细则、竞赛报名', tag:'需登录'},
+    {n:'数字身份·个人中心', u:'https://idas.uestc.edu.cn/personalInfo/personCenter/index.html', d:'统一身份认证入口', tag:'需登录'},
+    {n:'校园 VPN', u:'https://webvpn.uestc.edu.cn/', d:'不在校园网时访问校内资源（如希冀平台）', tag:'需登录'},
+    {n:'云中成电', u:'https://online.uestc.edu.cn/page/', d:'校内网络课程平台', tag:'需登录'},
+    {n:'文化素质教育中心', u:'https://cqe.uestc.edu.cn/index.htm', d:'成电讲坛/成电舞台（可认定核心通识学分）', tag:''},
+    {n:'校园社区 Riverside', u:'https://river-side.cc/top?period=daily', d:'同学互助、消息面（注意核实信息真伪）', tag:''}
+  ]},
+  {g:'📚 课程平台（对应本学期在修课）', items:[
+    {n:'希冀平台 CourseGrading', u:'https://121.48.164.163/', d:'数据结构：编程作业(5)+4个基础实验(6)+综合大实验(4)+第3~6章机考测验(20)；账号＝学号，初始密码 Uestc12345678', tag:'校园网'},
+    {n:'微积分（一）SPOC', u:'https://www.icourse163.org/spoc/course/UESTC-1486371172', d:'微积分Ⅰ本学期对应；MOOC 单元检测占平时 5%。⚠️ 只做老师通知并给链接的测验', tag:'需登录'},
+    {n:'微积分（二）SPOC', u:'https://www.icourse163.org/spoc/course/UESTC-1486366175', d:'对应下学期微积分Ⅱ，可提前收藏', tag:'需登录'},
+    {n:'线代 SPOC', u:'https://www.icourse163.org/spoc/learn/UESTC-1486384174?tid=1488256486', d:'⚠️ 必须选带「SPOC」标记的学校专有课程，否则成绩无法导出', tag:'需登录'},
+    {n:'中国大学 MOOC', u:'https://www.icourse163.org/', d:'微积分与线代 SPOC 都在这；先实名认证（学校/学号/真实姓名/邮箱填全）', tag:''},
+    {n:'智慧树', u:'https://www.zhihuishu.com/', d:'线上课程；⚠️ 确认课程角标须为「共享课/智慧课程」，公开课不算', tag:'需登录'},
+    {n:'知到 APP', u:'https://www.zhihuishu.com/', d:'智慧树手机端（应用商店搜「知到」）；初始密码 Zhihuishu@学号后六位', tag:''},
+    {n:'U 校园', u:'https://uai.unipus.cn/home', d:'英语听力实训：6 单元、每 2 周 1 个，占平时 15%；教材须正规渠道一书一码', tag:'需登录'},
+    {n:'成电慕课', u:'https://mooc.uestc.edu.cn/', d:'英语词汇实训：10 套×20 题 + 2 套总复习，占平时 10%', tag:'需登录'},
+    {n:'批改网', u:'https://www.pigai.org/index.php?c=write&a=myclass', d:'英语作文提交（属作业 20%）；提前 3 天交以留修改机会', tag:''},
+    {n:'超星学习通 · 军事理论', u:'https://mooc2-ans.chaoxing.com/mooc2-ans/mycourse/stu?courseid=266449005&clazzid=152927680&cpi=573118464', d:'视频进度＋章节测验；18 周仍在课表，建议期中前刷完', tag:'需登录'},
+    {n:'爱课程', u:'http://www.icourses.cn/', d:'线代老师推荐：MOOC 与资源共享课', tag:''}
+  ]},
+  {g:'💻 编程与自学', items:[
+    {n:'OpenJudge', u:'http://openjudge.cn/', d:'算法刷题入门；每周 8~12 题', tag:''},
+    {n:'洛谷', u:'https://www.luogu.com.cn/', d:'中文题库＋题单，适合系统练算法', tag:''},
+    {n:'Codeforces', u:'https://codeforces.com/', d:'英文比赛平台，ACM-ICPC 训练标配', tag:''},
+    {n:'OI Wiki', u:'https://oi-wiki.org/', d:'算法竞赛知识库，查算法与数据结构', tag:''},
+    {n:'GitHub', u:'https://github.com/', d:'建一个仓库存「数据结构实验 + 算法题解」，服务绩点/竞赛/求职', tag:''},
+    {n:'Git 官网', u:'https://git-scm.com/', d:'掌握 add/commit/push/branch 即可起步', tag:''},
+    {n:'cppreference（中文）', u:'https://zh.cppreference.com/', d:'C/C++ 与 STL 接口速查（浏览器打开正常）', tag:''},
+    {n:'CS 自学指南', u:'https://csdiy.wiki/', d:'课程之外的系统进阶路线', tag:''},
+    {n:'CPC Finder', u:'https://cpcfinder.com/', d:'查赛事与选手成绩，规划竞赛节奏', tag:''},
+    {n:'VS Code 入门', u:'https://code.visualstudio.com/docs/introvideos/basics', d:'配好 C 语言编译与调试（课程要求会断点调试）', tag:''}
+  ]},
+  {g:'📖 教材、工具与其他', items:[
+    {n:'Z-Library', u:'https://z-library.my/', d:'电子书检索（注意版权与合规使用）', tag:''},
+    {n:'图灵社区', u:'https://www.ituring.com.cn/', d:'计算机类图书与电子书', tag:''},
+    {n:'网易公开课', u:'https://open.163.com/', d:'数学老师推荐：MIT（Gilbert Strang 线性代数）、可汗学院', tag:''},
+    {n:'PDF24 工具', u:'https://tools.pdf24.org/zh/', d:'PDF 合并/压缩/转换', tag:''},
+    {n:'DeepSeek', u:'https://chat.deepseek.com/', d:'提问用。⚠️ 数据结构课规定：用「苏格拉底式导师」方式——不要它直接给代码与答案', tag:''},
+    {n:'成电学堂', u:'https://study.uestc.cn/', d:'校内学习平台（浏览器打开正常；程序化访问被拒）', tag:'需登录'}
+  ]}
+];
+
+/* =====================================================================
+   配置层（模板化）：个人层数据可在「设置」页可视化编辑，并可导出/导入 JSON
+   ===================================================================== */
+const CFG_KEY   = 'uestc2026.config.v1';   // 个人配置
+const GUIDE_KEY = 'uestc2026.guide.v1';    // 首次使用引导是否已关闭
+
+// 内置默认值的快照，供「恢复内置默认」使用
+const BUILTIN = JSON.parse(JSON.stringify({
+  meta: META,
+  dates: {termStart:TERM_START, midterm:MIDTERM, finalWeek:FINAL_WEEK, termEnd:TERM_END},
+  schedule: SCHEDULE, exceptions: EXCEPTIONS, tasks: TASKS, platform: PLATFORM,
+  courses: COURSES, grades: GRADES, links: LINKS
+}));
+
+const DAY_CN = {'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'日':7,'天':7};
+
+function dayFromToken(tok){
+  const s = String(tok == null ? '' : tok).trim();
+  const m = s.match(/^(?:周|星期|礼拜)([一二三四五六日天])$/);
+  if(m) return DAY_CN[m[1]] || 0;
+  if(/^[1-7]$/.test(s)) return +s;
+  return 0;
+}
+function periodsFromToken(tok){
+  const out = [];
+  String(tok == null ? '' : tok).split(/[,，、;；\s]+/).filter(Boolean).forEach(part=>{
+    const r = part.match(/^(\d{1,2})\s*[-~到至]\s*(\d{1,2})$/);
+    if(r){
+      const a = +r[1], b = +r[2];
+      for(let i = Math.min(a,b); i <= Math.max(a,b); i++) if(i >= 1 && i <= 12) out.push(i);
+    } else if(/^\d{1,2}$/.test(part)){
+      const v = +part; if(v >= 1 && v <= 12) out.push(v);
+    }
+  });
+  return [...new Set(out)].sort((a,b)=>a-b);
+}
+// 文本 → 课表：一行一门，`周一 5 课程名 | 教师 | 教室 | 4-19`
+function scheduleFromText(text){
+  const list = [], errs = [];
+  String(text||'').split(/\r?\n/).forEach((raw, i)=>{
+    const line = raw.trim();
+    if(!line || line.startsWith('#') || line.startsWith('//')) return;
+    const m = line.match(/^(\S+)\s+(\S+)\s+(.+)$/);
+    const no = '第 ' + (i+1) + ' 行';
+    if(!m){ errs.push(no + '：至少要写「星期 节次 课程名」，当前「' + line + '」'); return; }
+    const day = dayFromToken(m[1]);
+    const p   = periodsFromToken(m[2]);
+    if(!day){ errs.push(no + '：认不出星期「' + m[1] + '」（可写 周一 / 星期一 / 1）'); return; }
+    if(!p.length){ errs.push(no + '：认不出节次「' + m[2] + '」（1~12，可写 9 或 9,10 或 9-10）'); return; }
+    const parts = m[3].split('|').map(s=>s.trim());
+    list.push({day:day, p:p, c:parts[0] || '未命名课程', t:parts[1] || '', r:parts[2] || '', w:parts[3] || ''});
+  });
+  return {list:list, errs:errs};
+}
+function scheduleToText(list){
+  return (list||[]).map(x=>{
+    const tail = [x.c || '', x.t || '', x.r || '', x.w || ''];
+    while(tail.length > 1 && !tail[tail.length-1]) tail.pop();
+    return [DOW[x.day] || x.day, (x.p||[]).join(','), tail.join(' | ')].join(' ');
+  }).join('\n');
+}
+// 文本 → 任务：`最紧急 | 标题 | 说明`（级别可省）
+function tasksFromText(text, prefix){
+  const list = [];
+  const LV = {'hot':'hot','warn':'warn','ok':'ok','最紧急':'hot','本周':'warn','常规':'ok','紧急':'hot'};
+  String(text||'').split(/\r?\n/).forEach(raw=>{
+    const line = raw.trim();
+    if(!line || line.startsWith('#') || line.startsWith('//')) return;
+    const parts = line.split('|').map(s=>s.trim());
+    let g = 'ok', t = '', s = '';
+    if(LV[parts[0]]){ g = LV[parts[0]]; t = parts[1] || ''; s = parts[2] || ''; }
+    else { t = parts[0] || ''; s = parts[1] || ''; }
+    if(!t) return;
+    list.push({id:prefix + (list.length+1), g:g, t:t, s:s});
+  });
+  return list;
+}
+function tasksToText(list){
+  const LV = {hot:'最紧急', warn:'本周', ok:'常规'};
+  return (list||[]).map(x=>{
+    const tail = [x.t || '', x.s || ''];
+    while(tail.length > 1 && !tail[tail.length-1]) tail.pop();
+    return [(LV[x.g] || '常规')].concat(tail).join(' | ');
+  }).join('\n');
+}
+
+// 例外日：`2026-10-10 调课 周三 调休补课` / `2026-10-11 停课 校运会`
+// 类型：调课|补课|上课|swap → 必须跟一个「按周几上」；放假|停课|休息|off → 不用
+function exceptionsFromText(text){
+  const list = [], errs = [];
+  String(text||'').split(/\r?\n/).forEach((raw, i)=>{
+    const line = raw.trim();
+    if(!line || line.startsWith('#') || line.startsWith('//')) return;
+    const no = '第 ' + (i+1) + ' 行';
+    const parts = line.split(/\s+/);
+    const date = parts[0];
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){ errs.push(no + '：日期要写成 2026-10-10 这种格式，当前是「' + date + '」'); return; }
+    const kind = parts[1] || '';
+    let type = '';
+    if(/^(调课|补课|上课|swap)$/i.test(kind)) type = 'swap';
+    else if(/^(放假|停课|休息|off)$/i.test(kind)) type = 'off';
+    else { errs.push(no + '：第二个词要写「调课」或「放假 / 停课」，当前是「' + kind + '」'); return; }
+    const rest = parts.slice(2);
+    if(type === 'swap'){
+      const day = dayFromToken(rest[0]);
+      if(!day){ errs.push(no + '：调课必须写清按周几上，例如「' + date + ' 调课 周三 调休补课」'); return; }
+      const note = rest.slice(1).join(' ');
+      list.push({date: date, type: 'swap', day: day, note: note});
+    } else {
+      list.push({date: date, type: 'off', day: 0, note: rest.join(' ')});
+    }
+  });
+  return {list: list, errs: errs};
+}
+function exceptionsToText(list){
+  return (list||[]).map(x=>{
+    const tail = x.type === 'swap'
+      ? ['调课', DOW[x.day] || '', x.note || '']
+      : ['停课', x.note || ''];
+    while(tail.length > 1 && !tail[tail.length-1]) tail.pop();
+    return [x.date].concat(tail).join(' ');
+  }).join('\n');
+}
+/** 查某天（YYYY-MM-DD）的例外；没有则返回 null */
+function exceptionOn(day){
+  return (EXCEPTIONS || []).find(x=>x && x.date === day) || null;
+}
+
+function readConfig(){
+  try{ const raw = localStorage.getItem(CFG_KEY); return raw ? JSON.parse(raw) : null; }
+  catch(e){ return null; }
+}
+function writeConfig(cfg){
+  try{ localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); return true; }
+  catch(e){ return false; }
+}
+function applyConfig(cfg){
+  if(!cfg || typeof cfg !== 'object') return;
+  if(cfg.meta && typeof cfg.meta === 'object') META = Object.assign({}, META, cfg.meta);
+  const d = cfg.dates || {};
+  if(d.termStart) TERM_START = d.termStart;
+  if(d.midterm)   MIDTERM    = d.midterm;
+  if(d.finalWeek) FINAL_WEEK = d.finalWeek;
+  if(d.termEnd)   TERM_END   = d.termEnd;
+  if(Array.isArray(cfg.schedule)) SCHEDULE = cfg.schedule;
+  if(Array.isArray(cfg.exceptions)) EXCEPTIONS = cfg.exceptions;
+  if(Array.isArray(cfg.tasks))    TASKS    = cfg.tasks;
+  if(Array.isArray(cfg.platform)) PLATFORM = cfg.platform;
+  if(Array.isArray(cfg.courses))  COURSES  = cfg.courses;
+  if(Array.isArray(cfg.grades))   GRADES   = cfg.grades;
+  if(Array.isArray(cfg.links))    LINKS    = cfg.links;
+}
+function currentConfig(){
+  return {
+    v: 1,
+    exportedAt: dateStr(new Date()),
+    meta: META,
+    dates: {termStart:TERM_START, midterm:MIDTERM, finalWeek:FINAL_WEEK, termEnd:TERM_END},
+    schedule: SCHEDULE, exceptions: EXCEPTIONS, tasks: TASKS, platform: PLATFORM,
+    courses: COURSES, grades: GRADES, links: LINKS
+  };
+}
+
+/* ================= 设置页动作 ================= */
+function showMsg(id, kind, text){
+  const el = document.getElementById(id); if(!el) return;
+  el.hidden = false; el.className = 'msg ' + kind; el.textContent = text;
+}
+function renderSettings(){
+  const v = (id, val) => { const el = document.getElementById(id); if(el) el.value = val; };
+  v('cf-title',   META.title || '');
+  v('cf-sub',     META.sub || '');
+  v('cf-calnote', META.calNote || '');
+  v('cf-start',   TERM_START);
+  v('cf-mid',     MIDTERM);
+  v('cf-final',   FINAL_WEEK);
+  v('cf-end',     TERM_END);
+  v('cf-sch',     scheduleToText(SCHEDULE));
+  v('cf-exc',     exceptionsToText(EXCEPTIONS));
+  v('cf-task',    tasksToText(TASKS));
+  v('cf-plat',    tasksToText(PLATFORM));
+}
+function saveSettings(){
+  const val = id => { const el = document.getElementById(id); return el ? (el.value || '').trim() : ''; };
+  const errs = [];
+  const dates = {termStart:val('cf-start'), midterm:val('cf-mid'), finalWeek:val('cf-final'), termEnd:val('cf-end')};
+  ['termStart','midterm','finalWeek','termEnd'].forEach(k=>{
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(dates[k])) errs.push('日期未填或不完整：' + k + '（请用日期选择器选）');
+  });
+  if(!errs.length && days(dates.termStart, dates.termEnd) <= 0) errs.push('「学期结束日」必须晚于「第 1 周 周一」。');
+  const sch = scheduleFromText(document.getElementById('cf-sch').value);
+  if(sch.errs.length) errs.push('课表格式有问题：\n  · ' + sch.errs.join('\n  · '));
+  const exc = exceptionsFromText(document.getElementById('cf-exc').value);
+  if(exc.errs.length) errs.push('例外日格式有问题：\n  · ' + exc.errs.join('\n  · '));
+  if(errs.length){ showMsg('cf-msg', 'err', errs.join('\n')); return; }
+
+  const cfg = Object.assign({}, readConfig() || {}, {
+    v: 1,
+    meta: {title:val('cf-title'), sub:val('cf-sub'), calNote:val('cf-calnote')},
+    dates: dates,
+    schedule: sch.list,
+    exceptions: exc.list,
+    tasks: tasksFromText(document.getElementById('cf-task').value, 't'),
+    platform: tasksFromText(document.getElementById('cf-plat').value, 'p')
+  });
+  if(!writeConfig(cfg)){
+    showMsg('cf-msg', 'err', '写入本地存储失败：浏览器可能处于隐私模式，或禁用了 file:// 的本地存储。可改用 https 托管或换浏览器。');
+    return;
+  }
+  applyConfig(cfg);
+  renderAll(); renderSettings(); dismissGuide(true);
+  showMsg('cf-msg', 'ok', '已保存 ✓　课表 ' + SCHEDULE.length + ' 条 · 例外日 ' + EXCEPTIONS.length + ' 条 · 任务 ' + TASKS.length + ' 条 · 平台任务 ' + PLATFORM.length + ' 条。\n（数据只在本机浏览器，换设备请用下面的配置导入/导出。）');
+  markConfig();
+}
+function resetChecks(){
+  try{ localStorage.removeItem(LS); }catch(e){}
+  checks = {};
+  renderTasks(); renderPlatform(); renderDaily();
+  showMsg('cf-msg', 'ok', '已清空所有勾选记录（课表与日期配置保留）。');
+  markAll();
+}
+function restoreDefaults(){
+  try{ localStorage.removeItem(CFG_KEY); }catch(e){}
+  applyConfig(BUILTIN);
+  renderAll(); renderSettings();
+  showMsg('cf-msg', 'ok', '已恢复内置默认数据（课表与任务回到文件里自带的那一份）。');
+  markAll();
+}
+function dismissGuide(skipSync){
+  try{ localStorage.setItem(GUIDE_KEY, '1'); }catch(e){}
+  const el = document.getElementById('cf-guide'); if(el) el.hidden = true;
+  if(!skipSync) markAll();
+}
+
+/* ================= 配置导入 / 导出 ================= */
+function exportConfig(){
+  const ta = document.getElementById('cf-json');
+  ta.value = JSON.stringify(currentConfig(), null, 2);
+  showMsg('cf-msg2', 'ok', '已生成配置 JSON（约 ' + Math.round(ta.value.length/1024) + ' KB，含链接库与成绩构成）。');
+}
+function copyConfig(){
+  const ta = document.getElementById('cf-json');
+  if(!ta.value) exportConfig();
+  ta.focus(); ta.select();
+  let ok = false;
+  try{ ok = document.execCommand('copy'); }catch(e){ ok = false; }
+  if(ok){ showMsg('cf-msg2', 'ok', '已复制到剪贴板。'); return; }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(
+      ()=>showMsg('cf-msg2', 'ok', '已复制到剪贴板。'),
+      ()=>showMsg('cf-msg2', 'err', '复制失败：请手动全选文本框内容后 Ctrl/Cmd+C。'));
+    return;
+  }
+  showMsg('cf-msg2', 'err', '复制失败：请手动全选文本框内容后 Ctrl/Cmd+C。');
+}
+function downloadConfig(){
+  const ta = document.getElementById('cf-json');
+  if(!ta.value) exportConfig();
+  try{
+    const blob = new Blob([ta.value], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = '学习台配置.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+    showMsg('cf-msg2', 'ok', '已开始下载「学习台配置.json」。');
+  }catch(e){
+    showMsg('cf-msg2', 'err', '下载失败（' + e.message + '）。可改用「复制」，再自己存成 .json 文件。');
+  }
+}
+function applyImport(){
+  const txt = (document.getElementById('cf-json').value || '').trim();
+  if(!txt){ showMsg('cf-msg2', 'err', '文本框是空的：先点「生成配置 JSON」，或把同学给你的 JSON 粘进来。'); return; }
+  let cfg;
+  try{ cfg = JSON.parse(txt); }
+  catch(e){ showMsg('cf-msg2', 'err', 'JSON 解析失败：' + e.message + '\n（常见原因：复制不完整，或带了 Markdown 代码块符号）'); return; }
+
+  const errs = [];
+  if(!cfg || typeof cfg !== 'object' || Array.isArray(cfg)) errs.push('顶层必须是一个 JSON 对象：{ ... }');
+  if(!errs.length){
+    ['schedule','tasks','platform','courses','grades','links'].forEach(k=>{
+      if(k in cfg && !Array.isArray(cfg[k])) errs.push('字段 ' + k + ' 必须是数组');
+    });
+    const d = cfg.dates || {};
+    ['termStart','midterm','finalWeek','termEnd'].forEach(k=>{
+      if(k in d && !/^\d{4}-\d{2}-\d{2}$/.test(String(d[k]))) errs.push('dates.' + k + ' 须为 YYYY-MM-DD');
+    });
+    (Array.isArray(cfg.schedule) ? cfg.schedule : []).forEach((x, i)=>{
+      if(!x || typeof x !== 'object'){ errs.push('schedule[' + i + '] 不是对象'); return; }
+      if(!Number.isInteger(x.day) || x.day < 1 || x.day > 7) errs.push('schedule[' + i + '].day 须为 1~7');
+      if(!Array.isArray(x.p) || !x.p.length || !x.p.every(n=>Number.isInteger(n) && n >= 1 && n <= 12))
+        errs.push('schedule[' + i + '].p 须为 1~12 的节次数组');
+      if(typeof x.c !== 'string' || !x.c) errs.push('schedule[' + i + '].c 课程名不能为空');
+    });
+  }
+  if(errs.length){ showMsg('cf-msg2', 'err', '导入失败：\n  · ' + errs.slice(0, 12).join('\n  · ') + (errs.length > 12 ? '\n  …… 还有 ' + (errs.length-12) + ' 处' : '')); return; }
+
+  const merged = Object.assign({}, readConfig() || {}, cfg);
+  if(!writeConfig(merged)){
+    showMsg('cf-msg2', 'err', '写入本地存储失败：浏览器可能处于隐私模式或禁用了本地存储。');
+    return;
+  }
+  applyConfig(merged);
+  renderAll(); renderSettings(); dismissGuide();
+  showMsg('cf-msg2', 'ok', '配置已应用 ✓　课表 ' + SCHEDULE.length + ' 条 · 任务 ' + TASKS.length + ' 条 · 平台任务 ' + PLATFORM.length + ' 条 → 去「今日」「课表」看看。');
+}
+
+/* ================= 工具 ================= */
+const $  = s => document.querySelector(s);
+const pad = n => String(n).padStart(2,'0');
+const dateStr = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const DOW = ['','周一','周二','周三','周四','周五','周六','周日'];
+const isoDow = d => { const x = d.getDay(); return x === 0 ? 7 : x; };  // 周一=1 … 周日=7
+const days = (a,b) => Math.round((new Date(b) - new Date(a)) / 86400000);
+const esc = s => String(s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ================= 顶部信息 ================= */
+function renderHeader(){
+  const now = new Date(); now.setHours(0,0,0,0);
+  const wk = Math.floor(days(TERM_START, now) / 7) + 1;
+  $('#p-today').textContent = dateStr(now) + ' ' + DOW[isoDow(now)];
+  $('#p-week').textContent  = wk < 1 ? '未开学' : '第 ' + wk + ' 周';
+  const dm = days(now, MIDTERM);
+  $('#p-next').innerHTML = dm > 0
+    ? '距期中 <b>' + dm + '</b> 天'
+    : (dm === 0 ? '<b>今天就是期中考试</b>' : '期中已过，进入期末冲刺');
+  $('#p-title').textContent = META.title || '我的学习台';
+  $('#p-sub').textContent   = META.sub || '';
+  $('#cd-note').textContent = META.calNote || '按官方校历';
+}
+
+/* ================= 倒计时 ================= */
+function renderCountdown(){
+  const now = new Date(); now.setHours(0,0,0,0);
+  const items = [
+    {l:'距期中考试（' + MIDTERM.slice(5) + '）', d: days(now, MIDTERM)},
+    {l:'距期末周开始（' + FINAL_WEEK.slice(5) + '）', d: days(now, FINAL_WEEK)},
+    {l:'距学期结束（' + TERM_END.slice(5) + '）', d: days(now, TERM_END)}
+  ];
+  $('#cd-box').innerHTML = items.map(it => {
+    const cls = it.d <= 10 ? 'hot' : it.d <= 30 ? 'mid' : 'calm';
+    const v = it.d < 0 ? '已过' : it.d;
+    return '<div class="box '+cls+'"><div class="n'+(it.d < 0 ? ' small':'')+'">'+v+'</div><div class="l">'+esc(it.l)+'</div></div>';
+  }).join('');
+  const foot = $('#cd-foot');
+  if(foot) foot.textContent = '期中 ' + MIDTERM + '；期末周自 ' + FINAL_WEEK + ' 起，'
+    + TERM_END + ' 学期结束。日期可在「设置」页调整。';
+}
+
+/* ================= 今日课程 ================= */
+function renderToday(){
+  const now = new Date(); const today = dateStr(now);
+  const ex = exceptionOn(today);
+  const dow = (ex && ex.type === 'swap') ? ex.day : isoDow(now);
+  $('#today-tag').textContent = DOW[isoDow(now)]
+    + (ex ? (ex.type === 'swap' ? '（按' + DOW[ex.day] + '课表）' : '（停课）') : '');
+
+  if(ex && ex.type === 'off'){
+    $('#today-list').innerHTML = '<div class="today-item"><div class="t">停课</div><div>'
+      + '<div class="c">今天停课 / 放假 🎉</div>'
+      + '<div class="m">' + esc(ex.note || '来自「设置 → 例外日」') + '</div></div></div>';
+    return;
+  }
+
+  const list = SCHEDULE.filter(x => x.day === dow).sort((a,b)=>a.p[0]-b.p[0]);
+  const banner = (ex && ex.type === 'swap')
+    ? '<div class="today-item" style="border-color:rgba(255,176,32,.55)"><div class="t">调课</div><div>'
+      + '<div class="c">今天按 ' + esc(DOW[ex.day]) + ' 的课表上课</div>'
+      + '<div class="m">' + esc(ex.note || '来自「设置 → 例外日」') + '</div></div></div>'
+    : '';
+
+  if(!list.length){
+    $('#today-list').innerHTML = banner + '<div class="today-item"><div class="t">全天</div><div><div class="c">今天没有课 🎉</div>'
+      + '<div class="m">建议：按空档分析安排自习 / 项目 / 竞赛</div></div></div>';
+    return;
+  }
+  const hhmm = new Date().toTimeString().slice(0,5);
+  let html = banner;
+  list.forEach(x=>{
+    const tm = PERIODS[x.p[0]] || '';
+    const isNow = hhmm >= (tm.split('-')[0]||'') && hhmm <= (tm.split('-')[1]||'');
+    html += '<div class="today-item'+(isNow?' now':'')+'">'
+      + '<div class="t">'+esc(tm.split('-')[0]||'')+'<br><span style="font-weight:400;color:var(--dim);font-size:11px">第'+x.p.join(',')+'节</span></div>'
+      + '<div><div class="c">'+esc(x.c)+(isNow?' <span class="badge ok">进行中</span>':'')+'</div>'
+      + '<div class="m">'+esc([x.t,x.r].filter(Boolean).join(' · '))+' ｜ 周次 '+esc(x.w)+'</div></div></div>';
+  });
+  $('#today-list').innerHTML = html;
+}
+
+/* ================= 例外日（调课 / 放假） ================= */
+function renderExceptions(){
+  const box = document.getElementById('exc-list'); if(!box) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const base = dateStr(today);
+  const upcoming = (EXCEPTIONS || [])
+    .filter(x => x && x.date && days(base, x.date) >= 0 && days(base, x.date) <= 14)
+    .sort((a,b)=> a.date < b.date ? -1 : (a.date > b.date ? 1 : 0));
+  const tag = document.getElementById('exc-count');
+  if(tag) tag.textContent = upcoming.length ? (upcoming.length + ' 项') : '无';
+
+  if(!upcoming.length){
+    box.innerHTML = '<div class="note" style="margin:0">未来两周没有调课 / 放假。有的话在「设置 → 例外日」里加一行，'
+      + '例如 <span class="kbd">2026-10-10 调课 周三 调休补课</span>。</div>';
+    return;
+  }
+  box.innerHTML = upcoming.map(x=>{
+    const d = new Date(x.date + 'T00:00:00');
+    const dd = days(base, x.date);
+    const when = dd === 0 ? '今天' : dd === 1 ? '明天' : DOW[isoDow(d)];
+    const what = x.type === 'swap' ? ('按 ' + DOW[x.day] + ' 的课表上课') : '停课 / 放假';
+    return '<div class="today-item"><div class="t">' + esc(x.date.slice(5)) + '<br>'
+      + '<span style="font-weight:400;color:var(--dim);font-size:11px">' + esc(when) + ' · ' + esc(DOW[isoDow(d)]) + '</span></div>'
+      + '<div><div class="c">' + esc(what) + '</div>'
+      + '<div class="m">' + esc(x.note || '来自「设置 → 例外日」') + '</div></div></div>';
+  }).join('');
+}
+
+/* ================= 课表 ================= */
+function renderTable(){
+  const now = new Date(); const dow = isoDow(now);
+  let h = '<thead><tr><th style="min-width:64px">节次</th>';
+  for(let d=1; d<=7; d++) h += '<th'+(d===dow?' style="color:var(--ok)"':'')+'>'+DOW[d]+(d===dow?' ●':'')+'</th>';
+  h += '</tr></thead><tbody>';
+  for(let p=1; p<=12; p++){
+    h += '<tr><th>' + p + '<br><span style="font-weight:400;font-size:9.5px">'+(PERIODS[p]||'').split('-')[0]+'</span></th>';
+    for(let d=1; d<=7; d++){
+      const hit = SCHEDULE.filter(x => x.day===d && x.p.includes(p));
+      if(hit.length){
+        // 同一时段可能有多门课（如周日16:20：线代仅15周 / 微积分16-18周）→ 全部显示
+        const names = hit.map(h=>'<span class="cn">'+esc(h.c)+'</span>').join('');
+        const metas = hit.map(h=>esc([h.t,h.r].filter(Boolean).join('·')) + (h.w?('｜'+esc(h.w)+'周'):'')).join('<br>');
+        h += '<td class="slot has'+(d===dow?' today':'')+'" title="'+esc(hit.map(x=>x.c+' '+x.t+' '+x.r).join(' ／ '))+'">'
+          + names + '<span class="cm">' + metas + '</span></td>';
+      } else {
+        h += '<td class="slot'+(d===dow?' today':'')+'"></td>';
+      }
+    }
+    h += '</tr>';
+  }
+  h += '</tbody>';
+  $('#tt-table').innerHTML = h;
+}
+
+/* ================= 课程与成绩 ================= */
+function renderCourses(){
+  $('#course-list').innerHTML = COURSES.map(c =>
+    '<div class="grade-row"><div class="nm">'+esc(c.n)+'<div class="note" style="margin:2px 0 0">'+esc(c.code)+' · '+esc(c.note)+'</div></div>'
+    + '<div class="pc">'+c.cr+'<span style="font-size:11px;color:var(--dim)"> 学分</span></div></div>').join('');
+  const tot = COURSES.reduce((s,c)=>s+c.cr,0);
+  $('#course-list').insertAdjacentHTML('beforeend',
+    '<div class="flex" style="margin-top:10px"><span class="badge ok">合计 '+tot.toFixed(1)+' 学分</span>'
+    +'<span class="note" style="margin:0">另有思政选择性必修 2 学分、核心通识 9 学分等</span></div>');
+}
+function renderGrades(){
+  $('#grade-list').innerHTML = GRADES.map(g=>{
+    const bars = g.parts.map(p=>
+      '<div style="margin-top:6px"><div class="flex" style="font-size:12.5px"><span>'+esc(p[0])+'</span>'
+      +'<span style="color:var(--acc);font-weight:700">'+p[1]+'%</span></div>'
+      +'<div class="bar"><i style="width:'+Math.min(100,p[1]*2)+'%"></i></div></div>').join('');
+    return '<details><summary>'+esc(g.n)+'</summary><div class="body">'+bars+'</div></details>';
+  }).join('');
+}
+function calcGpa(){
+  const v = parseFloat($('#gp-in').value);
+  const out = $('#gp-out');
+  if(isNaN(v)){ out.textContent='—'; out.className='badge ok'; return; }
+  let gp = v >= 85 ? 4 : Math.max(0, +(4 - (85 - v) * 0.1).toFixed(1));
+  out.textContent = v + ' 分 → 绩点 ' + gp.toFixed(1) + (v>=85 ? '（满绩）' : '');
+  out.className = 'badge ' + (v>=85 ? 'ok' : v>=75 ? 'warn' : 'hot');
+}
+
+function renderLinks(){
+  const total = LINKS.reduce((s,g)=>s+g.items.length,0);
+  const lc = $('#link-count'); if(lc) lc.textContent = total + ' 个链接 · 已验活';
+  $('#links-box').innerHTML = LINKS.map(g=>{
+    const rows = g.items.map(x=>
+      '<a class="lk" href="'+x.u+'" target="_blank" rel="noopener">'
+      + '<span class="lkn">'+esc(x.n)+(x.tag?('<i class="tg">'+esc(x.tag)+'</i>'):'')+'</span>'
+      + '<span class="lkd">'+esc(x.d)+'</span></a>').join('');
+    return '<div class="lkg"><div class="lkgt">'+esc(g.g)+'<span>'+g.items.length+'</span></div>'+rows+'</div>';
+  }).join('');
+}
+
+/* ================= 勾选持久化 ================= */
+const LS = 'uestc2026.checks';
+let checks = {};
+try{ checks = JSON.parse(localStorage.getItem(LS) || '{}'); }catch(e){ checks = {}; }
+const save = () => { try{ localStorage.setItem(LS, JSON.stringify(checks)); }catch(e){} };
+
+function renderTasks(){
+  $('#task-list').innerHTML = TASKS.map(x=>
+    '<div class="todo'+(checks[x.id]?' done':'')+'" id="todo-'+x.id+'">'
+    +'<input type="checkbox" '+(checks[x.id]?'checked':'')+' onchange="toggle(\''+x.id+'\')">'
+    +'<div class="txt">'+esc(x.t)+'<small>'+esc(x.s)+'</small></div>'
+    +'<span class="badge '+x.g+'">'+(x.g==='hot'?'最紧急':x.g==='warn'?'本周':'常规')+'</span></div>').join('');
+  const done = TASKS.filter(x=>checks[x.id]).length;
+  $('#task-list').insertAdjacentHTML('beforeend',
+    '<div class="flex" style="margin-top:8px"><span class="badge '+(done===TASKS.length?'ok':'')+'">已完成 '+done+' / '+TASKS.length+'</span></div>');
+  renderAutoTasks();
+}
+
+/* ================= 机器人自动任务（来自 学习台任务.js） ================= */
+function autoTasks(){
+  return Array.isArray(window.STUDY_DESK_TASKS) ? window.STUDY_DESK_TASKS : [];
+}
+function renderAutoTasks(){
+  const box = document.getElementById('auto-tasks'); if(!box) return;
+  const list = autoTasks(), meta = window.STUDY_DESK_META || {}, tag = document.getElementById('auto-tag');
+  if(!list.length){
+    if(tag) tag.textContent = '尚未生成';
+    box.innerHTML = '<div class="note" style="margin:0">还没有自动任务。在项目目录运行 '
+      + '<span class="kbd">python tools\\parse_bot_inbox.py --emit-js</span> 生成「学习台任务.js」，刷新本页即可看到群里的通知。</div>';
+    return;
+  }
+  if(tag) tag.textContent = list.length + ' 条 · ' + (meta.generated_at || '');
+  const done = list.filter(x=>checks[x.id]).length;
+  box.innerHTML = list.map(x=>{
+    const id = String(x.id).replace(/[^\w-]/g,'');          // 只允许字母数字与短横线，避免注入
+    const g = ['hot','warn','ok'].indexOf(x.g) >= 0 ? x.g : 'ok';
+    return '<div class="todo'+(checks[id]?' done':'')+'" id="todo-'+id+'">'
+      + '<input type="checkbox" '+(checks[id]?'checked':'')+' onchange="toggle(\''+id+'\')">'
+      + '<div class="txt">'+esc(x.t)+'<small>'+esc(x.s)+'</small></div>'
+      + '<span class="badge '+g+'">'+(g==='hot'?'最紧急':g==='warn'?'本周':'常规')+'</span></div>';
+  }).join('')
+    + '<div class="flex" style="margin-top:8px"><span class="badge '+(done===list.length?'ok':'')+'">自动 · 已完成 '+done+' / '+list.length+'</span>'
+    + '<span class="note" style="margin:0">生成于 '+esc(meta.generated_at||'—')+(meta.source?(' ｜ '+esc(meta.source)):'')+(meta.standalone?' ｜ 📱 离线快照':'')+'</span></div>';
+}
+function renderPlatform(){
+  $('#plat-list').innerHTML = PLATFORM.map(x=>
+    '<div class="todo'+(checks[x.id]?' done':'')+'" id="todo-'+x.id+'">'
+    +'<input type="checkbox" '+(checks[x.id]?'checked':'')+' onchange="toggle(\''+x.id+'\')">'
+    +'<div class="txt">'+esc(x.t)+'<small>'+esc(x.s)+'</small></div>'
+    +'<span class="badge '+x.g+'">'+(x.g==='hot'?'最紧急':x.g==='warn'?'本周':'常规')+'</span></div>').join('');
+  const done = PLATFORM.filter(x=>checks[x.id]).length;
+  $('#plat-list').insertAdjacentHTML('beforeend',
+    '<div class="flex" style="margin-top:8px"><span class="badge '+(done===PLATFORM.length?'ok':'')+'">已完成 '+done+' / '+PLATFORM.length+'</span></div>');
+}
+/* ================= 跨设备同步（电脑 ↔ 手机，走局域网服务器的 /api/state） =================
+   原理：服务器存一份共享状态（勾选 / 设置 / 引导标记），两端打开时自动对齐。
+   冲突：乐观并发——POST 带 base_rev，服务端 rev 变了就返回 409，本机合并后再推一次。
+   仅当通过 HTTP(S) 打开且拿到授权时启用；file:// 直接双击打开时保持"本地模式"。
+   ========================================================================== */
+const DEVICE_KEY = 'uestc2026.device';
+const SYNC = { available: false, rev: 0, timer: null, puller: null, device: '', dirtyAll: false, dirtyConfig: false, dirtyGuide: false, dirtyChecks: new Set() };
+const SYNC_NOTE = {
+  local: '你现在是<b>双击 HTML 文件</b>打开的（<span class="kbd">file://</span>），这种方式不参与同步。'
+    + '<br>要同步请用 <b>一键启动学习台.bat</b> 打开的地址，或服务器窗口里打印的 <span class="kbd">http://…:8080/?k=…</span>。',
+  token: '服务器要求<b>同步令牌</b>。请用服务器窗口里打印的<b>带 ?k= 的地址</b>打开一次，之后会自动记住。',
+  offline: '连不上电脑上的发布服务。确认 <b>Study Desk Server</b> 窗口还在运行，'
+    + '并且你打开的是 <b>http://</b> 地址（不是双击文件）。'
+    + '<br>如果你打开的是<b>同学共享版</b>（静态网站），没有同步是正常的：勾选只存在你自己的浏览器里。',
+};
+
+function syncPossible(){ return location.protocol === 'http:' || location.protocol === 'https:'; }
+
+function deviceId(){
+  let d = '';
+  try{ d = localStorage.getItem(DEVICE_KEY) || ''; }catch(e){}
+  if(!d){
+    d = 'dev-' + Math.random().toString(36).slice(2, 8);
+    try{ localStorage.setItem(DEVICE_KEY, d); }catch(e){}
+  }
+  return d;
+}
+function setSyncStatus(text, cls, note){
+  const el = document.getElementById('p-sync');
+  if(el){
+    el.textContent = text;
+    el.style.color = cls === 'ok' ? 'var(--ok)' : cls === 'bad' ? 'var(--bad)' : cls === 'warn' ? 'var(--warn)' : '';
+  }
+  const bar = document.getElementById('sync-note');
+  if(!bar) return;
+  if(note === null || note === undefined){ bar.hidden = true; return; }
+  bar.hidden = false;
+  const tag = document.getElementById('sync-note-tag'); if(tag) tag.textContent = text;
+  const body = document.getElementById('sync-note-body'); if(body) body.innerHTML = note;
+}
+function snapshotState(){
+  let cfg = null;
+  try{ cfg = JSON.parse(localStorage.getItem(CFG_KEY) || 'null'); }catch(e){}
+  let guide = false;
+  try{ guide = localStorage.getItem(GUIDE_KEY) === '1'; }catch(e){}
+  return { checks: checks, config: cfg, guide: guide };
+}
+/**
+ * 把服务端状态套用到本机。
+ * opts.checks === 'local' 表示连勾选都保留本机（本机做了批量操作）；
+ * opts.keepKeys 里的键以本机为准（本机刚勾的那几个）；
+ * opts.keepConfig / keepGuide 同理。
+ */
+function applyServerState(st, opts){
+  opts = opts || {};
+  if(!st || typeof st !== 'object') return;
+  if(st.checks && typeof st.checks === 'object' && opts.checks !== 'local'){
+    const merged = Object.assign({}, st.checks);
+    (opts.keepKeys || []).forEach(k => { if(checks[k]) merged[k] = true; else delete merged[k]; });
+    checks = merged; save();
+  }
+  if(st.config && typeof st.config === 'object' && !opts.keepConfig){
+    try{ localStorage.setItem(CFG_KEY, JSON.stringify(st.config)); }catch(e){}
+    applyConfig(st.config);
+  }
+  if(st.guide && !opts.keepGuide){
+    try{ localStorage.setItem(GUIDE_KEY, '1'); }catch(e){}
+    const g = document.getElementById('cf-guide'); if(g) g.hidden = true;
+  }
+}
+async function initSync(){
+  SYNC.device = deviceId();
+  if(!syncPossible()){ setSyncStatus('📴 本地模式', '', SYNC_NOTE.local); return; }
+  try{
+    const r = await fetch('api/state', { credentials: 'same-origin', cache: 'no-store' });
+    if(r.status === 401){ setSyncStatus('🔒 需要令牌', 'warn', SYNC_NOTE.token); return; }
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json();
+    SYNC.available = true;
+    SYNC.rev = j.rev || 0;
+    if(j.rev > 0 && j.state) applyServerState(j.state, {});
+    setSyncStatus('☁️ 已同步 ' + (j.updated_at ? String(j.updated_at).slice(11, 16) : ''), 'ok', null);
+    renderAll(); renderSettings();
+    startAutoPull();
+    if(!j.rev) pushState();          // 服务端还是空的：把本机现有数据推上去当初始值
+  }catch(e){
+    setSyncStatus('⚠️ 同步不可用', 'bad', SYNC_NOTE.offline);
+  }
+}
+/** 定时 + 切回页面时主动拉取：否则另一台设备改了，这个已打开的页面永远不知道 */
+async function pullState(){
+  if(!SYNC.available) return;
+  if(SYNC.timer || SYNC.dirtyChecks.size || SYNC.dirtyConfig || SYNC.dirtyAll) return;  // 本机有待推送的改动，先别拉
+  try{
+    const r = await fetch('api/state', { credentials: 'same-origin', cache: 'no-store' });
+    if(r.status === 401){ SYNC.available = false; setSyncStatus('🔒 需要令牌', 'warn', SYNC_NOTE.token); return; }
+    if(!r.ok) return;
+    const j = await r.json();
+    if((j.rev || 0) > SYNC.rev){
+      applyServerState(j.state, {});
+      SYNC.rev = j.rev;
+      renderAll(); renderSettings();
+      setSyncStatus('☁️ 已同步 ' + new Date().toTimeString().slice(0, 5), 'ok', null);
+    }
+  }catch(e){
+    SYNC.available = false;
+    setSyncStatus('⚠️ 连接中断', 'bad', SYNC_NOTE.offline);
+  }
+}
+function startAutoPull(){
+  if(SYNC.puller) clearInterval(SYNC.puller);
+  SYNC.puller = setInterval(pullState, 10000);
+  if(document.addEventListener){
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden) pullState(); });
+  }
+  if(window.addEventListener){
+    window.addEventListener('focus', function(){ pullState(); });
+  }
+}
+function schedulePush(delay){
+  if(!SYNC.available) return;
+  if(SYNC.timer) clearTimeout(SYNC.timer);
+  SYNC.timer = setTimeout(function(){ pushState(); }, delay === undefined ? 600 : delay);
+}
+async function pushState(){
+  if(!SYNC.available) return;
+  if(SYNC.timer){ clearTimeout(SYNC.timer); SYNC.timer = null; }   // 清掉已排队的防抖，避免重复推送
+  const keepKeys = Array.from(SYNC.dirtyChecks);
+  try{
+    const r = await fetch('api/state', {
+      method: 'POST', credentials: 'same-origin', cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ base_rev: SYNC.rev, state: snapshotState(), device: SYNC.device })
+    });
+    const j = await r.json().catch(function(){ return {}; });
+    if(r.status === 409){
+      // 另一台设备先改过了：以服务端为准，但保留本机刚做的改动
+      applyServerState(j.state, SYNC.dirtyAll
+        ? { checks: 'local', keepConfig: true, keepGuide: true }
+        : { keepKeys: keepKeys, keepConfig: SYNC.dirtyConfig, keepGuide: SYNC.dirtyGuide });
+      SYNC.rev = j.rev || 0;
+      renderAll(); renderSettings();
+      setSyncStatus('🔀 已合并 ' + new Date().toTimeString().slice(0, 5), 'warn', null);
+      SYNC.dirtyAll = false; SYNC.dirtyConfig = false; SYNC.dirtyGuide = false; SYNC.dirtyChecks.clear();
+      return pushState();                        // 用新 rev 再推一次
+    }
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    SYNC.rev = j.rev || SYNC.rev + 1;
+    SYNC.dirtyAll = false; SYNC.dirtyConfig = false; SYNC.dirtyGuide = false; SYNC.dirtyChecks.clear();
+    setSyncStatus('☁️ 已同步 ' + new Date().toTimeString().slice(0, 5), 'ok', null);
+  }catch(e){
+    setSyncStatus('⚠️ 同步失败', 'bad');
+  }
+}
+function markChecked(id){ SYNC.dirtyChecks.add(id); schedulePush(); }
+function markConfig(){ SYNC.dirtyConfig = true; schedulePush(300); }
+function markAll(){ SYNC.dirtyAll = true; SYNC.dirtyConfig = true; SYNC.dirtyGuide = true; schedulePush(300); }
+
+function toggle(id){
+  checks[id] = !checks[id]; save();
+  const row = document.getElementById('todo-'+id);
+  if(row){ row.classList.toggle('done', !!checks[id]);
+    const cb = row.querySelector('input'); if(cb) cb.checked = !!checks[id]; }
+  renderTasks(); renderPlatform();
+  markChecked(id);
+}
+
+const DAILY = [
+  {id:'d1', t:'早自习：英语听力/词汇（U校园·成电慕课·词达人）'},
+  {id:'d2', t:'16:20-17:55 作业时段：把当天到期任务清零'},
+  {id:'d3', t:'深度块：数据结构 / 高数 / 线代轮转'},
+  {id:'d4', t:'22:45 群消息处理 ＋ 明日三件事'}
+];
+function renderDaily(){
+  const key = dateStr(new Date());
+  $('#daily-list').innerHTML = DAILY.map(x=>{
+    const id = key + ':' + x.id;
+    return '<div class="todo'+(checks[id]?' done':'')+'" id="todo-'+id.replace(/[:]/g,'_')+'">'
+      +'<input type="checkbox" '+(checks[id]?'checked':'')+' onchange="toggleDaily(\''+id+'\')">'
+      +'<div class="txt">'+esc(x.t)+'</div></div>';
+  }).join('');
+  const done = DAILY.filter(x=>checks[key+':'+x.id]).length;
+  $('#daily-stat').textContent = '今日完成 ' + done + ' / ' + DAILY.length;
+}
+function toggleDaily(id){
+  checks[id] = !checks[id]; save();
+  const el = document.getElementById('todo-'+id.replace(/[:]/g,'_'));
+  if(el){ el.classList.toggle('done', !!checks[id]);
+    const cb = el.querySelector('input'); if(cb) cb.checked = !!checks[id]; }
+  const key = dateStr(new Date());
+  $('#daily-stat').textContent = '今日完成 ' + DAILY.filter(x=>checks[key+':'+x.id]).length + ' / ' + DAILY.length;
+  markChecked(id);
+}
+function resetDaily(){
+  const key = dateStr(new Date());
+  DAILY.forEach(x=>{ delete checks[key+':'+x.id]; });
+  save(); renderDaily();
+  markAll();
+}
+
+/* ================= 通知中心（网站 + QQ 群，自动更新） =================
+   数据：服务器 /api/notices（data/notices.json，带 rev）
+   新通知判定：first_seen > 上次打开「通知」页的时间（localStorage）
+   自动更新：每 60 秒轮询；回到前台立即拉一次；rev 变了才重渲染
+   ================================================================== */
+const NOTICE = { feed: null, rev: 0, filter: 'all', timer: null, toastTimer: null, tick: 0, seenKey: 'uestc2026.noticeSeenAt' };
+const NOTICE_BASE_TITLE = (typeof document !== 'undefined' && typeof document.title === 'string') ? document.title : '';
+
+function noticeSeenAt(){ try{ return Number(localStorage.getItem(NOTICE.seenKey)) || 0; }catch(e){ return 0; } }
+function setNoticeSeenAt(ts){ try{ localStorage.setItem(NOTICE.seenKey, String(ts)); }catch(e){} }
+function noticesPossible(){ return syncPossible() && typeof fetch === 'function'; }
+function noticeItems(){ return NOTICE.feed && Array.isArray(NOTICE.feed.items) ? NOTICE.feed.items : []; }
+function inlineNoticeFeed(){
+  try{ return (typeof window !== 'undefined' && window.STUDY_DESK_NOTICES && Array.isArray(window.STUDY_DESK_NOTICES.items)) ? window.STUDY_DESK_NOTICES : null; }catch(e){ return null; }
+}
+function noticeIsNew(x){
+  const seen = noticeSeenAt();
+  if(!seen || !x.first_seen) return false;
+  const t = new Date(x.first_seen).getTime();
+  return !isNaN(t) && t > seen;
+}
+function fmtNoticeDay(s){
+  const m = String(s || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+  return m ? (m[2] + '-' + m[3]) : String(s || '').slice(0, 10);
+}
+function safeNoticeUrl(u){ return /^https?:\/\//i.test(String(u || '')) ? String(u) : ''; }
+
+function updateNoticeBadge(){
+  const n = noticeItems().filter(noticeIsNew).length;
+  const dot = document.getElementById('notice-dot');
+  if(dot){ dot.hidden = n <= 0; dot.textContent = n > 99 ? '99+' : String(n); }
+  if(NOTICE_BASE_TITLE && typeof document.title === 'string'){
+    document.title = n > 0 ? ('(' + n + ') ' + NOTICE_BASE_TITLE) : NOTICE_BASE_TITLE;
+  }
+}
+
+function renderNoticeSources(){
+  const box = document.getElementById('notice-sources'); if(!box) return;
+  const srcs = NOTICE.feed && Array.isArray(NOTICE.feed.sources) ? NOTICE.feed.sources : [];
+  if(!srcs.length){ box.innerHTML = '<div class="note" style="margin:0">还没有采集记录。</div>'; return; }
+  box.innerHTML = srcs.map(s=>{
+    const cls = s.ok ? 'ok' : (s.skipped ? '' : 'bad');
+    const right = s.ok ? (s.count + ' 条') : (s.skipped ? '未启用' : '失败');
+    const extra = s.error ? '<div class="nt-m">'+esc(s.error)+'</div>' : (s.note ? '<div class="nt-m">'+esc(s.note)+'</div>' : '');
+    return '<div class="todo" style="align-items:center"><span class="badge '+cls+'">'+esc(right)+'</span>'
+      + '<div class="txt">'+esc(s.name || s.id)+extra+'</div></div>';
+  }).join('');
+}
+
+function renderNotices(){
+  const box = document.getElementById('notice-list'); if(!box) return;
+  const tag = document.getElementById('notice-tag');
+  const stat = document.getElementById('notice-stat');
+  const foot = document.getElementById('notice-foot');
+  const all = noticeItems();
+  const fresh = all.filter(noticeIsNew);
+  let list = all;
+  if(NOTICE.filter === 'web') list = all.filter(x=>x.kind !== 'qq');
+  else if(NOTICE.filter === 'qq') list = all.filter(x=>x.kind === 'qq');
+  else if(NOTICE.filter === 'new') list = fresh;
+
+  if(tag){
+    if(!noticesPossible()) tag.textContent = NOTICE.feed ? '离线快照' : '本地模式';
+    else if(!NOTICE.feed) tag.textContent = '等待采集';
+    else tag.textContent = all.length + ' 条';
+  }
+  if(stat) stat.textContent = NOTICE.feed
+    ? ('新 ' + fresh.length + ' · 网站 ' + all.filter(x=>x.kind !== 'qq').length + ' · 群 ' + all.filter(x=>x.kind === 'qq').length)
+    : '';
+
+  if(!noticesPossible()){
+    if(!NOTICE.feed){
+      box.innerHTML = '<div class="note" style="margin:0">当前是 <b>file://</b> 直接打开，拿不到自动更新的数据。<br>'
+        + '用 <span class="kbd">一键启动学习台.bat</span> 打开局域网地址，或使用在线版后，这里会自动出现网站通知与群消息。</div>';
+      if(foot) foot.textContent = '双击 HTML 时通知只读本地快照；实时版请走服务器地址。';
+      updateNoticeBadge(); return;
+    }
+    // 有内联快照：继续往下渲染，页脚会标注「离线快照」
+  } else if(!NOTICE.feed){
+    box.innerHTML = '<div class="note" style="margin:0">还没有采集到数据。服务器启动后会自动抓取；也可以先运行 '
+      + '<span class="kbd">node tools\\collect-notices.mjs</span>。</div>';
+    if(foot) foot.textContent = '';
+    updateNoticeBadge(); return;
+  }
+  if(!list.length){
+    box.innerHTML = '<div class="note" style="margin:0">' + (NOTICE.filter === 'new' ? '没有新通知。' : '这个分类下还没有内容。') + '</div>';
+  } else {
+    box.innerHTML = list.map(x=>{
+      const isNew = noticeIsNew(x);
+      const url = safeNoticeUrl(x.url);
+      const tags = (x.tags || []).map(t=>'<i>'+esc(t)+'</i>').join('');
+      const meta = [];
+      if(x.course) meta.push(esc(x.course));
+      if(x.person) meta.push(esc(x.person));
+      if(x.deadline) meta.push('截止 ' + esc(x.deadline));
+      if(x.kind === 'qq' && x.summary) meta.push(esc(String(x.summary).slice(0, 160)));
+      const inner = '<div class="nt-h"><span class="nt-src'+(x.kind === 'qq' ? ' qq' : '')+'">'
+        + esc(x.source_name || (x.kind === 'qq' ? '群消息' : '网站')) + '</span>'
+        + (isNew ? '<span class="nt-new">NEW</span>' : '')
+        + '<span class="nt-date">' + esc(fmtNoticeDay(x.published)) + '</span></div>'
+        + '<div class="nt-t">' + esc(x.title) + '</div>'
+        + (meta.length ? '<div class="nt-m">' + meta.join(' · ') + '</div>' : '')
+        + (tags ? '<div class="nt-tags">' + tags + '</div>' : '');
+      return url
+        ? '<a class="nt'+(isNew ? ' new' : '')+'" href="'+esc(url)+'" target="_blank" rel="noopener">'+inner+'</a>'
+        : '<div class="nt'+(isNew ? ' new' : '')+'">'+inner+'</div>';
+    }).join('');
+  }
+  if(foot){
+    const when = NOTICE.feed.generated_at ? new Date(NOTICE.feed.generated_at).toLocaleString('zh-CN', { hour12: false }) : '—';
+    if(!noticesPossible()){
+      foot.textContent = '离线快照：' + when + ' · 不会自动更新；想收实时通知请用在线版或服务器地址。';
+    } else {
+      const okSrc = (NOTICE.feed.sources || []).filter(s=>s.ok).length;
+      foot.textContent = '更新于 ' + when + ' · 生效数据源 ' + okSrc + ' 个 · 共 ' + all.length + ' 条';
+    }
+  }
+  updateNoticeBadge();
+}
+
+function showNoticeToast(msg){
+  const el = document.getElementById('toast'); if(!el) return;
+  el.textContent = msg; el.hidden = false;
+  if(NOTICE.toastTimer) clearTimeout(NOTICE.toastTimer);
+  NOTICE.toastTimer = setTimeout(()=>{ el.hidden = true; }, 10000);
+}
+
+function reloadAutoTasks(){
+  if(!syncPossible()) return;
+  try{
+    const s = document.createElement('script');
+    s.src = '学习台任务.js?t=' + Date.now();
+    s.onload = function(){ try{ renderAutoTasks(); }catch(e){} };
+    s.onerror = function(){};
+    document.body.appendChild(s);
+  }catch(e){}
+}
+
+async function fetchNoticeFeed(force){
+  const opts = { cache: 'no-store', credentials: 'same-origin' };
+  try{
+    const r = await fetch('api/notices' + (force ? '?refresh=1' : ''), opts);
+    if(r.ok || r.status === 503) return r;      // 本机/局域网服务器
+  }catch(e){ /* 静态托管没有 API，继续回退 */ }
+  return await fetch('data/notices.json?t=' + Date.now(), opts); // 静态版：直接读发布出去的 JSON（加时间戳绕开 CDN 缓存）
+}
+
+async function refreshNotices(force){
+  if(!noticesPossible()){ renderNotices(); return; }
+  try{
+    const r = await fetchNoticeFeed(force);
+    if(r.status === 503){
+      const tag = document.getElementById('notice-tag'); if(tag) tag.textContent = '正在首次采集';
+      const box = document.getElementById('notice-list');
+      if(box && !NOTICE.feed) box.innerHTML = '<div class="note" style="margin:0">服务器正在抓取第一批通知，几秒后自动重试…</div>';
+      NOTICE.waitRetry = (NOTICE.waitRetry || 0) + 1;
+      if(NOTICE.waitRetry <= 12) setTimeout(()=>refreshNotices(false), 5000);
+      return;
+    }
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    let j = null;
+    try{ j = await r.json(); }catch(e){ j = null; }
+    if(!j || !Array.isArray(j.items)){
+      // 有些静态托管会把未知路径改写成 index.html（200 HTML），这里再回退一次
+      const r2 = await fetch('data/notices.json?t=' + Date.now(), { cache: 'no-store', credentials: 'same-origin' });
+      if(r2.ok){ try{ j = await r2.json(); }catch(e){ j = null; } }
+    }
+    if(!j || !Array.isArray(j.items)) throw new Error('返回格式不对');
+    const prevRev = NOTICE.rev;
+    NOTICE.feed = j;
+    if(typeof j.rev === 'number') NOTICE.rev = j.rev;
+    if(prevRev && j.rev !== prevRev){
+      const n = noticeItems().filter(noticeIsNew).length;
+      if(n) showNoticeToast('📡 有 ' + n + ' 条新通知，点这里查看');
+      reloadAutoTasks();
+    }
+    renderNotices();
+    renderNoticeSources();
+    const sec = document.getElementById('s-notice');
+    if(sec && sec.hidden === false){ setNoticeSeenAt(Date.now()); updateNoticeBadge(); }
+  }catch(e){
+    const msg = String((e && e.message) || e);
+    if(force) showNoticeToast('刷新失败：' + (msg === 'HTTP 401' ? '需要令牌，请用带 ?k= 的地址打开一次' : msg));
+    const tag = document.getElementById('notice-tag');
+    if(tag && !NOTICE.feed) tag.textContent = '连接失败';
+    if(!NOTICE.feed){
+      const box = document.getElementById('notice-list');
+      if(box) box.innerHTML = '<div class="note" style="margin:0">连不上通知服务：' + esc(msg) + '</div>';
+    }
+    if(typeof console !== 'undefined' && console.warn) console.warn('notices:', e);
+  }
+}
+
+function filterNotices(k){
+  NOTICE.filter = k;
+  if(typeof document.querySelectorAll === 'function'){
+    document.querySelectorAll('#s-notice .nf').forEach(b=>b.classList.toggle('on', b.dataset && b.dataset.nf === k));
+  }
+  renderNotices();
+}
+
+function markNoticesRead(){
+  setNoticeSeenAt(Date.now());
+  updateNoticeBadge();
+  renderNotices();
+}
+
+async function initNotices(){
+  if(noticesPossible()){
+    if(!noticeSeenAt()) setNoticeSeenAt(Date.now());
+    await refreshNotices(false);
+    renderNoticeSources();
+    NOTICE.timer = setInterval(function(){
+      if(document.hidden) return;
+      refreshNotices(false);
+      NOTICE.tick++;
+      if(NOTICE.tick % 5 === 0) reloadAutoTasks();   // 每 5 分钟再把「任务」页的数据拉一次
+    }, 60000);
+    if(typeof document.addEventListener === 'function'){
+      document.addEventListener('visibilitychange', function(){ if(!document.hidden) refreshNotices(false); });
+    }
+  } else {
+    const snap = inlineNoticeFeed();
+    if(snap) NOTICE.feed = snap;                    // 离线 HTML：显示内联快照
+  }
+  renderNotices();
+  if(NOTICE.feed) renderNoticeSources();
+}
+
+/* ================= 导航 ================= */
+const TABS = ['s-today','s-tt','s-tasks','s-notice','s-platform','s-course','s-info','s-cfg'];
+function showTab(id, btn){
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  const b = btn || document.querySelector('nav button[data-tab="'+id+'"]');
+  if(b) b.classList.add('on');
+  TABS.forEach(t=>{ const el = document.getElementById(t); if(el) el.hidden = true; });
+  const t = document.getElementById(id); if(t) t.hidden = false;
+  if(id === 's-notice' && typeof markNoticesRead === 'function') markNoticesRead();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function gotoTab(id){ showTab(id); }
+document.querySelectorAll('nav button').forEach(b=>{
+  b.addEventListener('click', ()=> showTab(b.dataset.tab, b));
+});
+/* 支持带 #标签 的链接直接分享到某一页，例如 .../#s-notice */
+(function initTabFromHash(){
+  const h = String((typeof location !== 'undefined' && location.hash) || '').replace(/^#/, '');
+  if(h && TABS.indexOf(h) >= 0) showTab(h);
+})();
+
+/* ================= 启动 ================= */
+function renderAll(){
+  renderHeader(); renderCountdown(); renderToday();
+  renderTable(); renderExceptions(); renderCourses(); renderGrades(); renderLinks();
+  renderTasks(); renderPlatform(); renderDaily();
+}
+(function initConfig(){
+  const cfg = readConfig();
+  if(cfg) applyConfig(cfg);
+  let dismissed = false;
+  try{ dismissed = localStorage.getItem(GUIDE_KEY) === '1'; }catch(e){}
+  const guide = document.getElementById('cf-guide');
+  if(guide) guide.hidden = dismissed;
+})();
+renderAll(); renderSettings();
+window.__syncReady = initSync();     // 跨设备同步（file:// 打开时自动降级为本地模式）
+window.__noticesReady = initNotices();   // 通知中心：每 60 秒自动检查网站/群消息更新
+$('#gp-in').addEventListener('input', calcGpa);
+setInterval(()=>{ renderHeader(); renderCountdown(); renderToday(); }, 60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "我的学习台",
+  "short_name": "学习台",
+  "description": "成电 2026秋 个人学习台：课表、任务、群通知自动任务",
+  "start_url": "./学习台.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0f172a",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

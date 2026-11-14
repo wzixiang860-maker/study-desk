@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "rev": 3,
-  "changed": false,
-  "generated_at": "2026-11-13T06:17:01.693Z",
-  "today": "2026-11-13",
+  "rev": 4,
+  "changed": true,
+  "generated_at": "2026-11-14T03:17:02.517Z",
+  "today": "2026-11-14",
   "refresh_seconds": 600,
   "retention_days": 14,
   "sources": [
@@ -13,9 +13,9 @@
       "ok": true,
       "count": 15,
       "parsed": 15,
-      "fetched_at": "2026-11-13T06:17:01.945Z",
+      "fetched_at": "2026-11-14T03:17:02.802Z",
       "error": null,
-      "ms": 252,
+      "ms": 285,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
     },
     {
@@ -24,20 +24,20 @@
       "ok": true,
       "count": 0,
       "parsed": 15,
-      "fetched_at": "2026-11-13T06:17:02.004Z",
+      "fetched_at": "2026-11-14T03:17:02.907Z",
       "error": null,
-      "ms": 59,
+      "ms": 105,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
     },
     {
       "id": "jwc-xsswgg",
       "name": "教务处 · 学生事务公告",
       "ok": true,
-      "count": 4,
+      "count": 3,
       "parsed": 15,
-      "fetched_at": "2026-11-13T06:17:02.085Z",
+      "fetched_at": "2026-11-14T03:17:02.984Z",
       "error": null,
-      "ms": 81,
+      "ms": 76,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
     },
     {
@@ -46,9 +46,9 @@
       "ok": true,
       "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-13T06:17:02.166Z",
+      "fetched_at": "2026-11-14T03:17:03.042Z",
       "error": null,
-      "ms": 81,
+      "ms": 58,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
@@ -76,9 +76,9 @@
       "name": "班级群消息",
       "ok": true,
       "count": 1,
-      "fetched_at": "2026-11-13T06:17:02.400Z",
+      "fetched_at": "2026-11-14T03:17:04.705Z",
       "error": null,
-      "ms": 234
+      "ms": 1663
     }
   ],
   "items": [
@@ -101,7 +101,7 @@
       "course": "数据结构与算法I",
       "no": "N002",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-cb3875d43b7a",
@@ -122,7 +122,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-e93f75611d6a",
@@ -143,7 +143,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-585609e77399",
@@ -163,7 +163,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-41452917cf0e",
@@ -184,7 +184,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-710620edd7bc",
@@ -204,7 +204,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-3bf7d58ecc07",
@@ -224,7 +224,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-3e776a8ae15f",
@@ -244,7 +244,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-a82c5457313b",
@@ -264,7 +264,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-eec9cbf02321",
@@ -284,7 +284,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-cc1555d01e82",
@@ -306,7 +306,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-88c67842b3ec",
@@ -327,7 +327,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-104617f61f36",
@@ -347,7 +347,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-273b20bdb091",
@@ -368,7 +368,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-d967daecc715",
@@ -388,7 +388,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     },
     {
       "id": "web-0019580b5403",
@@ -408,33 +408,12 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
-    },
-    {
-      "id": "web-00c256c872a8",
-      "kind": "web",
-      "source": "jwc-xsswgg",
-      "source_name": "教务处 · 学生事务公告",
-      "title": "关于2026-2027-1学期举办“线性代数与空间解析几何疑难分析讲座（一）”的 通知",
-      "url": "https://www.jwc.uestc.edu.cn/nry.jsp?urltype=news.NewsContentUrl&wbtreeid=1116&wbnewsid=23241",
-      "published": "2026-10-30",
-      "summary": "",
-      "deadline": "",
-      "expired": false,
-      "tags": [
-        "教务",
-        "讲座"
-      ],
-      "person": "",
-      "course": "",
-      "no": "",
-      "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-13T06:17:02.604Z"
+      "last_seen": "2026-11-14T03:17:05.200Z"
     }
   ],
   "counts": {
-    "total": 17,
-    "web": 16,
+    "total": 16,
+    "web": 15,
     "qq": 1
   }
 }

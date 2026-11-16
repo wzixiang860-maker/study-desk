@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "rev": 4,
+  "rev": 5,
   "changed": true,
-  "generated_at": "2026-11-14T03:17:02.517Z",
-  "today": "2026-11-14",
+  "generated_at": "2026-11-16T08:47:02.465Z",
+  "today": "2026-11-16",
   "refresh_seconds": 600,
   "retention_days": 14,
   "sources": [
@@ -13,31 +13,31 @@
       "ok": true,
       "count": 15,
       "parsed": 15,
-      "fetched_at": "2026-11-14T03:17:02.802Z",
+      "fetched_at": "2026-11-16T08:47:03.115Z",
       "error": null,
-      "ms": 285,
+      "ms": 648,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
     },
     {
       "id": "jwc-xsksgg",
       "name": "教务处 · 学生考试公告",
       "ok": true,
-      "count": 0,
+      "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-14T03:17:02.907Z",
+      "fetched_at": "2026-11-16T08:47:03.418Z",
       "error": null,
-      "ms": 105,
+      "ms": 303,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
     },
     {
       "id": "jwc-xsswgg",
       "name": "教务处 · 学生事务公告",
       "ok": true,
-      "count": 3,
+      "count": 4,
       "parsed": 15,
-      "fetched_at": "2026-11-14T03:17:02.984Z",
+      "fetched_at": "2026-11-16T08:47:09.480Z",
       "error": null,
-      "ms": 76,
+      "ms": 6062,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
     },
     {
@@ -46,9 +46,9 @@
       "ok": true,
       "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-14T03:17:03.042Z",
+      "fetched_at": "2026-11-16T08:47:09.721Z",
       "error": null,
-      "ms": 58,
+      "ms": 241,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
@@ -76,12 +76,53 @@
       "name": "班级群消息",
       "ok": true,
       "count": 1,
-      "fetched_at": "2026-11-14T03:17:04.705Z",
+      "fetched_at": "2026-11-16T08:47:10.572Z",
       "error": null,
-      "ms": 1663
+      "ms": 850
     }
   ],
   "items": [
+    {
+      "id": "web-4892e7c11d67",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "关于做好本学期考研学生期末考试缓考工作的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1126/24504.htm",
+      "published": "2026-11-16",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "考试"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-16T08:47:11.173Z",
+      "last_seen": "2026-11-16T08:47:11.173Z"
+    },
+    {
+      "id": "web-addfa7659c1a",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "2026年“拓竹科技”奖教金评选通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1128/24488.htm",
+      "published": "2026-11-13",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-16T08:47:11.173Z",
+      "last_seen": "2026-11-16T08:47:11.173Z"
+    },
     {
       "id": "qq-a8632e497b64",
       "kind": "qq",
@@ -101,7 +142,7 @@
       "course": "数据结构与算法I",
       "no": "N002",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-cb3875d43b7a",
@@ -122,7 +163,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-e93f75611d6a",
@@ -143,7 +184,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-585609e77399",
@@ -163,7 +204,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-41452917cf0e",
@@ -184,7 +225,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-710620edd7bc",
@@ -204,7 +245,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-3bf7d58ecc07",
@@ -224,7 +265,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-3e776a8ae15f",
@@ -244,7 +285,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-a82c5457313b",
@@ -264,7 +305,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-eec9cbf02321",
@@ -284,7 +325,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-cc1555d01e82",
@@ -306,7 +347,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-88c67842b3ec",
@@ -327,7 +368,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-104617f61f36",
@@ -347,7 +388,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-273b20bdb091",
@@ -368,7 +409,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:47:11.173Z"
     },
     {
       "id": "web-d967daecc715",
@@ -388,7 +429,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:17:04.124Z"
     },
     {
       "id": "web-0019580b5403",
@@ -408,12 +449,12 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-14T03:17:05.200Z"
+      "last_seen": "2026-11-16T08:17:04.124Z"
     }
   ],
   "counts": {
-    "total": 16,
-    "web": 15,
+    "total": 18,
+    "web": 17,
     "qq": 1
   }
 }

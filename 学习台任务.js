@@ -4,9 +4,9 @@
 window.STUDY_DESK_TASKS = [
   {
     "id": "auto-16966861",
-    "g": "warn",
+    "g": "hot",
     "t": "【测试】11月20日 23:59 前交数据结构实验三",
     "s": "2026-11-20 23:59｜作业｜数据结构与算法I"
   }
 ];
-window.STUDY_DESK_META = {"generated_at": "2026-11-16 16:47", "count": 1, "source": "bot-inbox"};
+window.STUDY_DESK_META = {"generated_at": "2026-11-17 09:17", "count": 1, "source": "bot-inbox"};

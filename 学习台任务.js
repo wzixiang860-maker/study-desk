@@ -3,16 +3,10 @@
    学习台.html 会通过 <script src> 读取它；文件不存在时页面照常工作。 */
 window.STUDY_DESK_TASKS = [
   {
-    "id": "auto-e7ef8a22",
-    "g": "hot",
-    "t": "今天有什么作业？",
-    "s": "2026-11-17｜作业"
-  },
-  {
     "id": "auto-16966861",
     "g": "hot",
     "t": "【测试】11月20日 23:59 前交数据结构实验三",
     "s": "2026-11-20 23:59｜作业｜数据结构与算法I"
   }
 ];
-window.STUDY_DESK_META = {"generated_at": "2026-11-17 13:47", "count": 2, "source": "bot-inbox"};
+window.STUDY_DESK_META = {"generated_at": "2026-11-18 11:17", "count": 1, "source": "bot-inbox"};

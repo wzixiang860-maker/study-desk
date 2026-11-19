@@ -1,55 +1,47 @@
 {
   "schema": 1,
-  "rev": 9,
+  "rev": 10,
   "changed": true,
-  "generated_at": "2026-11-18T07:47:01.776Z",
-  "today": "2026-11-18",
+  "generated_at": "2026-11-19T00:17:02.384Z",
+  "today": "2026-11-19",
   "refresh_seconds": 600,
   "retention_days": 14,
   "sources": [
     {
       "id": "jwc-tzgg",
       "name": "教务处 · 通知公告",
-      "ok": true,
-      "count": 14,
-      "parsed": 15,
-      "fetched_at": "2026-11-18T07:47:02.164Z",
-      "error": null,
-      "ms": 386,
-      "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
+      "ok": false,
+      "count": 0,
+      "fetched_at": "2026-11-19T00:17:24.755Z",
+      "error": "fetch failed",
+      "ms": 22371
     },
     {
       "id": "jwc-xsksgg",
       "name": "教务处 · 学生考试公告",
-      "ok": true,
-      "count": 1,
-      "parsed": 15,
-      "fetched_at": "2026-11-18T07:47:02.517Z",
-      "error": null,
-      "ms": 353,
-      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
+      "ok": false,
+      "count": 0,
+      "fetched_at": "2026-11-19T00:17:47.060Z",
+      "error": "fetch failed",
+      "ms": 22305
     },
     {
       "id": "jwc-xsswgg",
       "name": "教务处 · 学生事务公告",
-      "ok": true,
-      "count": 5,
-      "parsed": 15,
-      "fetched_at": "2026-11-18T07:47:04.250Z",
-      "error": null,
-      "ms": 1732,
-      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
+      "ok": false,
+      "count": 0,
+      "fetched_at": "2026-11-19T00:18:09.228Z",
+      "error": "fetch failed",
+      "ms": 22168
     },
     {
       "id": "jwc-jcgg",
       "name": "教务处 · 教材公告",
-      "ok": true,
-      "count": 1,
-      "parsed": 15,
-      "fetched_at": "2026-11-18T07:47:04.653Z",
-      "error": null,
-      "ms": 403,
-      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
+      "ok": false,
+      "count": 0,
+      "fetched_at": "2026-11-19T00:18:31.522Z",
+      "error": "fetch failed",
+      "ms": 22294
     },
     {
       "id": "scse-tzgg",
@@ -76,9 +68,9 @@
       "name": "班级群消息",
       "ok": true,
       "count": 3,
-      "fetched_at": "2026-11-18T07:47:05.535Z",
+      "fetched_at": "2026-11-19T00:18:32.470Z",
       "error": null,
-      "ms": 882
+      "ms": 948
     }
   ],
   "items": [
@@ -100,7 +92,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-18T07:47:06.064Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "qq-e5d947223635",
@@ -120,7 +112,7 @@
       "course": "",
       "no": "N003",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-19T00:18:32.700Z"
     },
     {
       "id": "qq-14c65d7ca141",
@@ -140,7 +132,7 @@
       "course": "",
       "no": "N001",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-19T00:18:32.700Z"
     },
     {
       "id": "web-4892e7c11d67",
@@ -161,7 +153,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-16T08:47:11.173Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "web-addfa7659c1a",
@@ -181,7 +173,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-16T08:47:11.173Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "qq-a8632e497b64",
@@ -202,7 +194,7 @@
       "course": "数据结构与算法I",
       "no": "N004",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-19T00:18:32.700Z"
     },
     {
       "id": "web-cb3875d43b7a",
@@ -223,7 +215,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "web-e93f75611d6a",
@@ -244,7 +236,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "web-585609e77399",
@@ -264,7 +256,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "web-41452917cf0e",
@@ -285,7 +277,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "web-710620edd7bc",
@@ -305,7 +297,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "web-3bf7d58ecc07",
@@ -325,7 +317,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
       "id": "web-3e776a8ae15f",
@@ -345,95 +337,12 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
-    },
-    {
-      "id": "web-a82c5457313b",
-      "kind": "web",
-      "source": "jwc-tzgg",
-      "source_name": "教务处 · 通知公告",
-      "title": "关于2026-2027-1学期三、四年级开设体能提升课的通知",
-      "url": "https://www.jwc.uestc.edu.cn/info/1125/24343.htm",
-      "published": "2026-11-04",
-      "summary": "",
-      "deadline": "",
-      "expired": false,
-      "tags": [
-        "教务"
-      ],
-      "person": "",
-      "course": "",
-      "no": "",
-      "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
-    },
-    {
-      "id": "web-eec9cbf02321",
-      "kind": "web",
-      "source": "jwc-tzgg",
-      "source_name": "教务处 · 通知公告",
-      "title": "关于转发《四川省教育厅关于开展省级特色学院建设工作的通知》的通知",
-      "url": "https://www.jwc.uestc.edu.cn/nry.jsp?urltype=news.NewsContentUrl&wbtreeid=1128&wbnewsid=24327",
-      "published": "2026-11-04",
-      "summary": "",
-      "deadline": "",
-      "expired": false,
-      "tags": [
-        "教务"
-      ],
-      "person": "",
-      "course": "",
-      "no": "",
-      "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
-    },
-    {
-      "id": "web-cc1555d01e82",
-      "kind": "web",
-      "source": "jwc-tzgg",
-      "source_name": "教务处 · 通知公告",
-      "title": "2026年度教育部-华为“智能基座”优秀教师/教材奖励计划申报通知",
-      "url": "https://www.jwc.uestc.edu.cn/info/1120/24326.htm",
-      "published": "2026-11-04",
-      "summary": "",
-      "deadline": "",
-      "expired": false,
-      "tags": [
-        "教务",
-        "报名",
-        "教材"
-      ],
-      "person": "",
-      "course": "",
-      "no": "",
-      "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
-    },
-    {
-      "id": "web-88c67842b3ec",
-      "kind": "web",
-      "source": "jwc-tzgg",
-      "source_name": "教务处 · 通知公告",
-      "title": "关于开展2026年工程教育专业认证申请工作的通知",
-      "url": "https://www.jwc.uestc.edu.cn/info/1128/24325.htm",
-      "published": "2026-11-04",
-      "summary": "",
-      "deadline": "",
-      "expired": false,
-      "tags": [
-        "教务",
-        "报名"
-      ],
-      "person": "",
-      "course": "",
-      "no": "",
-      "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T07:47:06.064Z"
+      "last_seen": "2026-11-18T15:47:04.225Z"
     }
   ],
   "counts": {
-    "total": 17,
-    "web": 14,
+    "total": 13,
+    "web": 10,
     "qq": 3
   }
 }

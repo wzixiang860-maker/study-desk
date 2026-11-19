@@ -9,4 +9,4 @@ window.STUDY_DESK_TASKS = [
     "s": "2026-11-20 23:59｜作业｜数据结构与算法I"
   }
 ];
-window.STUDY_DESK_META = {"generated_at": "2026-11-18 15:47", "count": 1, "source": "bot-inbox"};
+window.STUDY_DESK_META = {"generated_at": "2026-11-19 08:18", "count": 1, "source": "bot-inbox"};

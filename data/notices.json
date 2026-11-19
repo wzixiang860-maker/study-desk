@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "rev": 10,
-  "changed": true,
-  "generated_at": "2026-11-19T00:17:02.384Z",
+  "changed": false,
+  "generated_at": "2026-11-19T00:47:02.056Z",
   "today": "2026-11-19",
   "refresh_seconds": 600,
   "retention_days": 14,
@@ -12,36 +12,36 @@
       "name": "教务处 · 通知公告",
       "ok": false,
       "count": 0,
-      "fetched_at": "2026-11-19T00:17:24.755Z",
+      "fetched_at": "2026-11-19T00:47:24.261Z",
       "error": "fetch failed",
-      "ms": 22371
+      "ms": 22204
     },
     {
       "id": "jwc-xsksgg",
       "name": "教务处 · 学生考试公告",
       "ok": false,
       "count": 0,
-      "fetched_at": "2026-11-19T00:17:47.060Z",
+      "fetched_at": "2026-11-19T00:47:46.462Z",
       "error": "fetch failed",
-      "ms": 22305
+      "ms": 22200
     },
     {
       "id": "jwc-xsswgg",
       "name": "教务处 · 学生事务公告",
       "ok": false,
       "count": 0,
-      "fetched_at": "2026-11-19T00:18:09.228Z",
+      "fetched_at": "2026-11-19T00:48:08.685Z",
       "error": "fetch failed",
-      "ms": 22168
+      "ms": 22223
     },
     {
       "id": "jwc-jcgg",
       "name": "教务处 · 教材公告",
       "ok": false,
       "count": 0,
-      "fetched_at": "2026-11-19T00:18:31.522Z",
+      "fetched_at": "2026-11-19T00:48:30.899Z",
       "error": "fetch failed",
-      "ms": 22294
+      "ms": 22214
     },
     {
       "id": "scse-tzgg",
@@ -68,9 +68,9 @@
       "name": "班级群消息",
       "ok": true,
       "count": 3,
-      "fetched_at": "2026-11-19T00:18:32.470Z",
+      "fetched_at": "2026-11-19T00:48:31.144Z",
       "error": null,
-      "ms": 948
+      "ms": 244
     }
   ],
   "items": [
@@ -112,7 +112,7 @@
       "course": "",
       "no": "N003",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-19T00:18:32.700Z"
+      "last_seen": "2026-11-19T00:48:31.348Z"
     },
     {
       "id": "qq-14c65d7ca141",
@@ -132,7 +132,7 @@
       "course": "",
       "no": "N001",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-19T00:18:32.700Z"
+      "last_seen": "2026-11-19T00:48:31.348Z"
     },
     {
       "id": "web-4892e7c11d67",
@@ -194,7 +194,7 @@
       "course": "数据结构与算法I",
       "no": "N004",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-19T00:18:32.700Z"
+      "last_seen": "2026-11-19T00:48:31.348Z"
     },
     {
       "id": "web-cb3875d43b7a",

@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "rev": 10,
-  "changed": false,
-  "generated_at": "2026-11-19T00:47:02.056Z",
+  "rev": 11,
+  "changed": true,
+  "generated_at": "2026-11-19T01:17:01.991Z",
   "today": "2026-11-19",
   "refresh_seconds": 600,
   "retention_days": 14,
@@ -12,36 +12,38 @@
       "name": "教务处 · 通知公告",
       "ok": false,
       "count": 0,
-      "fetched_at": "2026-11-19T00:47:24.261Z",
+      "fetched_at": "2026-11-19T01:17:24.308Z",
       "error": "fetch failed",
-      "ms": 22204
+      "ms": 22316
     },
     {
       "id": "jwc-xsksgg",
       "name": "教务处 · 学生考试公告",
       "ok": false,
       "count": 0,
-      "fetched_at": "2026-11-19T00:47:46.462Z",
+      "fetched_at": "2026-11-19T01:17:46.669Z",
       "error": "fetch failed",
-      "ms": 22200
+      "ms": 22360
     },
     {
       "id": "jwc-xsswgg",
       "name": "教务处 · 学生事务公告",
       "ok": false,
       "count": 0,
-      "fetched_at": "2026-11-19T00:48:08.685Z",
+      "fetched_at": "2026-11-19T01:18:08.983Z",
       "error": "fetch failed",
-      "ms": 22223
+      "ms": 22314
     },
     {
       "id": "jwc-jcgg",
       "name": "教务处 · 教材公告",
-      "ok": false,
-      "count": 0,
-      "fetched_at": "2026-11-19T00:48:30.899Z",
-      "error": "fetch failed",
-      "ms": 22214
+      "ok": true,
+      "count": 1,
+      "parsed": 15,
+      "fetched_at": "2026-11-19T01:18:16.631Z",
+      "error": null,
+      "ms": 7648,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
       "id": "scse-tzgg",
@@ -68,9 +70,9 @@
       "name": "班级群消息",
       "ok": true,
       "count": 3,
-      "fetched_at": "2026-11-19T00:48:31.144Z",
+      "fetched_at": "2026-11-19T01:18:16.887Z",
       "error": null,
-      "ms": 244
+      "ms": 256
     }
   ],
   "items": [
@@ -112,7 +114,7 @@
       "course": "",
       "no": "N003",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-19T00:48:31.348Z"
+      "last_seen": "2026-11-19T01:18:17.103Z"
     },
     {
       "id": "qq-14c65d7ca141",
@@ -132,7 +134,7 @@
       "course": "",
       "no": "N001",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-19T00:48:31.348Z"
+      "last_seen": "2026-11-19T01:18:17.103Z"
     },
     {
       "id": "web-4892e7c11d67",
@@ -194,7 +196,7 @@
       "course": "数据结构与算法I",
       "no": "N004",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-19T00:48:31.348Z"
+      "last_seen": "2026-11-19T01:18:17.103Z"
     },
     {
       "id": "web-cb3875d43b7a",
@@ -218,10 +220,10 @@
       "last_seen": "2026-11-18T15:47:04.225Z"
     },
     {
-      "id": "web-e93f75611d6a",
+      "id": "web-d11a7bb84493",
       "kind": "web",
-      "source": "jwc-tzgg",
-      "source_name": "教务处 · 通知公告",
+      "source": "jwc-jcgg",
+      "source_name": "教务处 · 教材公告",
       "title": "关于召开数字教材建设交流研讨会的通知",
       "url": "https://www.jwc.uestc.edu.cn/info/1122/24359.htm",
       "published": "2026-11-10",
@@ -235,8 +237,8 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "first_seen": "2026-11-19T01:18:17.103Z",
+      "last_seen": "2026-11-19T01:18:17.103Z"
     },
     {
       "id": "web-585609e77399",

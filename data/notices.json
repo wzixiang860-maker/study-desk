@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "rev": 11,
+  "rev": 12,
   "changed": true,
-  "generated_at": "2026-11-19T01:17:01.991Z",
+  "generated_at": "2026-11-19T03:47:12.102Z",
   "today": "2026-11-19",
   "refresh_seconds": 600,
   "retention_days": 14,
@@ -10,29 +10,35 @@
     {
       "id": "jwc-tzgg",
       "name": "教务处 · 通知公告",
-      "ok": false,
-      "count": 0,
-      "fetched_at": "2026-11-19T01:17:24.308Z",
-      "error": "fetch failed",
-      "ms": 22316
+      "ok": true,
+      "count": 11,
+      "parsed": 15,
+      "fetched_at": "2026-11-19T03:47:12.574Z",
+      "error": null,
+      "ms": 466,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
     },
     {
       "id": "jwc-xsksgg",
       "name": "教务处 · 学生考试公告",
-      "ok": false,
-      "count": 0,
-      "fetched_at": "2026-11-19T01:17:46.669Z",
-      "error": "fetch failed",
-      "ms": 22360
+      "ok": true,
+      "count": 1,
+      "parsed": 15,
+      "fetched_at": "2026-11-19T03:47:12.688Z",
+      "error": null,
+      "ms": 113,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
     },
     {
       "id": "jwc-xsswgg",
       "name": "教务处 · 学生事务公告",
-      "ok": false,
-      "count": 0,
-      "fetched_at": "2026-11-19T01:18:08.983Z",
-      "error": "fetch failed",
-      "ms": 22314
+      "ok": true,
+      "count": 5,
+      "parsed": 15,
+      "fetched_at": "2026-11-19T03:47:12.866Z",
+      "error": null,
+      "ms": 177,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
     },
     {
       "id": "jwc-jcgg",
@@ -40,9 +46,9 @@
       "ok": true,
       "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-19T01:18:16.631Z",
+      "fetched_at": "2026-11-19T03:47:13.350Z",
       "error": null,
-      "ms": 7648,
+      "ms": 484,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
@@ -70,9 +76,9 @@
       "name": "班级群消息",
       "ok": true,
       "count": 3,
-      "fetched_at": "2026-11-19T01:18:16.887Z",
+      "fetched_at": "2026-11-19T03:47:14.476Z",
       "error": null,
-      "ms": 256
+      "ms": 1096
     }
   ],
   "items": [
@@ -94,7 +100,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-18T07:47:06.064Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "qq-e5d947223635",
@@ -114,7 +120,7 @@
       "course": "",
       "no": "N003",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-19T01:18:17.103Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "qq-14c65d7ca141",
@@ -134,7 +140,7 @@
       "course": "",
       "no": "N001",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-19T01:18:17.103Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-4892e7c11d67",
@@ -155,7 +161,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-16T08:47:11.173Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-addfa7659c1a",
@@ -175,7 +181,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-16T08:47:11.173Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "qq-a8632e497b64",
@@ -196,7 +202,28 @@
       "course": "数据结构与算法I",
       "no": "N004",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-19T01:18:17.103Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
+    },
+    {
+      "id": "web-d7d7c3daa566",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "成电学子获中国机器人大赛创新创意赛项全国一等奖",
+      "url": "https://www.jwc.uestc.edu.cn/info/1127/24474.htm",
+      "published": "2026-11-12",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务",
+        "竞赛"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-19T03:47:14.696Z",
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-cb3875d43b7a",
@@ -217,13 +244,13 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
-      "id": "web-d11a7bb84493",
+      "id": "web-e93f75611d6a",
       "kind": "web",
-      "source": "jwc-jcgg",
-      "source_name": "教务处 · 教材公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "关于召开数字教材建设交流研讨会的通知",
       "url": "https://www.jwc.uestc.edu.cn/info/1122/24359.htm",
       "published": "2026-11-10",
@@ -237,8 +264,8 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-19T01:18:17.103Z",
-      "last_seen": "2026-11-19T01:18:17.103Z"
+      "first_seen": "2026-11-19T03:47:14.696Z",
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-585609e77399",
@@ -258,7 +285,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-41452917cf0e",
@@ -279,7 +306,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-710620edd7bc",
@@ -299,7 +326,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-3bf7d58ecc07",
@@ -319,7 +346,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     },
     {
       "id": "web-3e776a8ae15f",
@@ -339,12 +366,12 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-18T15:47:04.225Z"
+      "last_seen": "2026-11-19T03:47:14.696Z"
     }
   ],
   "counts": {
-    "total": 13,
-    "web": 10,
+    "total": 14,
+    "web": 11,
     "qq": 3
   }
 }

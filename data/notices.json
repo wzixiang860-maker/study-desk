@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "rev": 15,
+  "rev": 16,
   "changed": true,
-  "generated_at": "2026-11-24T00:47:02.276Z",
+  "generated_at": "2026-11-24T01:17:01.667Z",
   "today": "2026-11-24",
   "refresh_seconds": 600,
   "retention_days": 14,
@@ -10,20 +10,24 @@
     {
       "id": "jwc-tzgg",
       "name": "教务处 · 通知公告",
-      "ok": false,
-      "count": 0,
-      "fetched_at": "2026-11-24T00:47:24.606Z",
-      "error": "fetch failed",
-      "ms": 22330
+      "ok": true,
+      "count": 9,
+      "parsed": 15,
+      "fetched_at": "2026-11-24T01:17:02.358Z",
+      "error": null,
+      "ms": 691,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
     },
     {
       "id": "jwc-xsksgg",
       "name": "教务处 · 学生考试公告",
-      "ok": false,
-      "count": 0,
-      "fetched_at": "2026-11-24T00:47:46.847Z",
-      "error": "fetch failed",
-      "ms": 22240
+      "ok": true,
+      "count": 1,
+      "parsed": 15,
+      "fetched_at": "2026-11-24T01:17:02.444Z",
+      "error": null,
+      "ms": 85,
+      "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
     },
     {
       "id": "jwc-xsswgg",
@@ -31,9 +35,9 @@
       "ok": true,
       "count": 6,
       "parsed": 15,
-      "fetched_at": "2026-11-24T00:48:05.974Z",
+      "fetched_at": "2026-11-24T01:17:02.743Z",
       "error": null,
-      "ms": 19127,
+      "ms": 299,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
     },
     {
@@ -42,9 +46,9 @@
       "ok": true,
       "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-24T00:48:06.002Z",
+      "fetched_at": "2026-11-24T01:17:03.135Z",
       "error": null,
-      "ms": 28,
+      "ms": 392,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
@@ -72,17 +76,17 @@
       "name": "班级群消息",
       "ok": true,
       "count": 3,
-      "fetched_at": "2026-11-24T00:48:07.099Z",
+      "fetched_at": "2026-11-24T01:17:03.783Z",
       "error": null,
-      "ms": 1097
+      "ms": 648
     }
   ],
   "items": [
     {
-      "id": "web-8dbf6cf0741b",
+      "id": "web-8780fee7bc3b",
       "kind": "web",
-      "source": "jwc-xsswgg",
-      "source_name": "教务处 · 学生事务公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "关于电子科技大学创新实践与国际教育周开展情况调研的通知",
       "url": "https://www.jwc.uestc.edu.cn/info/1125/24518.htm",
       "published": "2026-11-23",
@@ -95,14 +99,14 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-24T00:48:07.343Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "first_seen": "2026-11-24T01:17:03.988Z",
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
-      "id": "web-d236727732ba",
+      "id": "web-cc7bcb378941",
       "kind": "web",
-      "source": "jwc-xsswgg",
-      "source_name": "教务处 · 学生事务公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "关于组织申报2027年度“大学生创新训练计划”项目的通知",
       "url": "https://www.jwc.uestc.edu.cn/info/1127/24516.htm",
       "published": "2026-11-20",
@@ -116,14 +120,14 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-24T00:48:07.343Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "first_seen": "2026-11-24T01:17:03.988Z",
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
-      "id": "web-91c52d375688",
+      "id": "web-b80c06620d4a",
       "kind": "web",
-      "source": "jwc-xsswgg",
-      "source_name": "教务处 · 学生事务公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "关于2027届本科预毕业生图像采集工作的通知",
       "url": "https://www.jwc.uestc.edu.cn/info/1125/24515.htm",
       "published": "2026-11-18",
@@ -136,8 +140,8 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-24T00:48:07.343Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "first_seen": "2026-11-24T01:17:03.988Z",
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
       "id": "qq-e5d947223635",
@@ -157,7 +161,7 @@
       "course": "",
       "no": "N003",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
       "id": "qq-14c65d7ca141",
@@ -177,13 +181,13 @@
       "course": "",
       "no": "N001",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
-      "id": "web-76f77214ca12",
+      "id": "web-4892e7c11d67",
       "kind": "web",
-      "source": "jwc-xsswgg",
-      "source_name": "教务处 · 学生事务公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "关于做好本学期考研学生期末考试缓考工作的通知(2026)",
       "url": "https://www.jwc.uestc.edu.cn/info/1126/24504.htm",
       "published": "2026-11-16",
@@ -197,8 +201,8 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-24T00:48:07.343Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "first_seen": "2026-11-24T01:17:03.988Z",
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
       "id": "web-addfa7659c1a",
@@ -218,7 +222,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-16T08:47:11.173Z",
-      "last_seen": "2026-11-23T15:17:03.526Z"
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
       "id": "qq-a8632e497b64",
@@ -239,13 +243,13 @@
       "course": "数据结构与算法I",
       "no": "N004",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
-      "id": "web-98f5dd67978d",
+      "id": "web-d7d7c3daa566",
       "kind": "web",
-      "source": "jwc-xsswgg",
-      "source_name": "教务处 · 学生事务公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "成电学子获中国机器人大赛创新创意赛项全国一等奖",
       "url": "https://www.jwc.uestc.edu.cn/info/1127/24474.htm",
       "published": "2026-11-12",
@@ -259,14 +263,14 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-24T00:48:07.343Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "first_seen": "2026-11-24T01:17:03.988Z",
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
-      "id": "web-c323c0b2bf55",
+      "id": "web-cb3875d43b7a",
       "kind": "web",
-      "source": "jwc-xsswgg",
-      "source_name": "教务处 · 学生事务公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "2026年“晨电智能杯”嵌入式设计竞赛 低年级组获奖名单公示",
       "url": "https://www.jwc.uestc.edu.cn/info/1127/24417.htm",
       "published": "2026-11-11",
@@ -280,14 +284,14 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-24T00:48:07.343Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "first_seen": "2026-11-24T01:17:03.988Z",
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
-      "id": "web-d11a7bb84493",
+      "id": "web-e93f75611d6a",
       "kind": "web",
-      "source": "jwc-jcgg",
-      "source_name": "教务处 · 教材公告",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
       "title": "关于召开数字教材建设交流研讨会的通知",
       "url": "https://www.jwc.uestc.edu.cn/info/1122/24359.htm",
       "published": "2026-11-10",
@@ -301,8 +305,8 @@
       "person": "",
       "course": "",
       "no": "",
-      "first_seen": "2026-11-24T00:48:07.343Z",
-      "last_seen": "2026-11-24T00:48:07.343Z"
+      "first_seen": "2026-11-24T01:17:03.988Z",
+      "last_seen": "2026-11-24T01:17:03.988Z"
     },
     {
       "id": "web-585609e77399",
@@ -322,7 +326,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-23T15:17:03.526Z"
+      "last_seen": "2026-11-24T01:17:03.988Z"
     }
   ],
   "counts": {

@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "rev": 17,
+  "rev": 18,
   "changed": true,
-  "generated_at": "2026-11-24T07:47:03.493Z",
-  "today": "2026-11-24",
+  "generated_at": "2026-11-25T09:47:03.391Z",
+  "today": "2026-11-25",
   "refresh_seconds": 600,
   "retention_days": 14,
   "sources": [
@@ -11,11 +11,11 @@
       "id": "jwc-tzgg",
       "name": "教务处 · 通知公告",
       "ok": true,
-      "count": 10,
+      "count": 9,
       "parsed": 15,
-      "fetched_at": "2026-11-24T07:47:03.830Z",
+      "fetched_at": "2026-11-25T09:47:03.553Z",
       "error": null,
-      "ms": 336,
+      "ms": 162,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
     },
     {
@@ -24,9 +24,9 @@
       "ok": true,
       "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-24T07:47:03.897Z",
+      "fetched_at": "2026-11-25T09:47:03.584Z",
       "error": null,
-      "ms": 67,
+      "ms": 31,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
     },
     {
@@ -35,20 +35,20 @@
       "ok": true,
       "count": 6,
       "parsed": 15,
-      "fetched_at": "2026-11-24T07:47:04.222Z",
+      "fetched_at": "2026-11-25T09:47:03.623Z",
       "error": null,
-      "ms": 325,
+      "ms": 38,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
     },
     {
       "id": "jwc-jcgg",
       "name": "教务处 · 教材公告",
       "ok": true,
-      "count": 1,
+      "count": 0,
       "parsed": 15,
-      "fetched_at": "2026-11-24T07:47:04.310Z",
+      "fetched_at": "2026-11-25T09:47:03.893Z",
       "error": null,
-      "ms": 88,
+      "ms": 270,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
@@ -76,12 +76,32 @@
       "name": "班级群消息",
       "ok": true,
       "count": 3,
-      "fetched_at": "2026-11-24T07:47:06.203Z",
+      "fetched_at": "2026-11-25T09:47:05.475Z",
       "error": null,
-      "ms": 1892
+      "ms": 1582
     }
   ],
   "items": [
+    {
+      "id": "web-22a88de9590c",
+      "kind": "web",
+      "source": "jwc-tzgg",
+      "source_name": "教务处 · 通知公告",
+      "title": "电子科技大学本科教学管理队伍交流培训(第三期)的通知",
+      "url": "https://www.jwc.uestc.edu.cn/info/1123/24523.htm",
+      "published": "2026-11-25",
+      "summary": "",
+      "deadline": "",
+      "expired": false,
+      "tags": [
+        "教务"
+      ],
+      "person": "",
+      "course": "",
+      "no": "",
+      "first_seen": "2026-11-25T09:47:06.037Z",
+      "last_seen": "2026-11-25T09:47:06.037Z"
+    },
     {
       "id": "web-487bef91b3d2",
       "kind": "web",
@@ -100,7 +120,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T07:47:06.851Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "web-8780fee7bc3b",
@@ -120,7 +140,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "web-cc7bcb378941",
@@ -141,7 +161,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "web-b80c06620d4a",
@@ -161,7 +181,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "qq-e5d947223635",
@@ -181,7 +201,7 @@
       "course": "",
       "no": "N003",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "qq-14c65d7ca141",
@@ -201,7 +221,7 @@
       "course": "",
       "no": "N001",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "web-4892e7c11d67",
@@ -222,7 +242,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "web-addfa7659c1a",
@@ -242,7 +262,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-16T08:47:11.173Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "qq-a8632e497b64",
@@ -263,7 +283,7 @@
       "course": "数据结构与算法I",
       "no": "N004",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "web-d7d7c3daa566",
@@ -284,7 +304,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     },
     {
       "id": "web-cb3875d43b7a",
@@ -305,53 +325,12 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
-    },
-    {
-      "id": "web-e93f75611d6a",
-      "kind": "web",
-      "source": "jwc-tzgg",
-      "source_name": "教务处 · 通知公告",
-      "title": "关于召开数字教材建设交流研讨会的通知",
-      "url": "https://www.jwc.uestc.edu.cn/info/1122/24359.htm",
-      "published": "2026-11-10",
-      "summary": "",
-      "deadline": "",
-      "expired": false,
-      "tags": [
-        "教务",
-        "教材"
-      ],
-      "person": "",
-      "course": "",
-      "no": "",
-      "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
-    },
-    {
-      "id": "web-585609e77399",
-      "kind": "web",
-      "source": "jwc-tzgg",
-      "source_name": "教务处 · 通知公告",
-      "title": "关于报送2026年度本科教学工作量的通知",
-      "url": "https://www.jwc.uestc.edu.cn/info/1128/24356.htm",
-      "published": "2026-11-10",
-      "summary": "",
-      "deadline": "",
-      "expired": false,
-      "tags": [
-        "教务"
-      ],
-      "person": "",
-      "course": "",
-      "no": "",
-      "first_seen": "2026-11-13T02:51:31.907Z",
-      "last_seen": "2026-11-24T07:47:06.851Z"
+      "last_seen": "2026-11-25T09:47:06.037Z"
     }
   ],
   "counts": {
-    "total": 13,
-    "web": 10,
+    "total": 12,
+    "web": 9,
     "qq": 3
   }
 }

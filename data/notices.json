@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "rev": 21,
-  "changed": true,
-  "generated_at": "2026-11-27T03:47:03.058Z",
+  "changed": false,
+  "generated_at": "2026-11-27T04:47:01.987Z",
   "today": "2026-11-27",
   "refresh_seconds": 600,
   "retention_days": 14,
@@ -13,9 +13,9 @@
       "ok": true,
       "count": 7,
       "parsed": 15,
-      "fetched_at": "2026-11-27T03:47:03.366Z",
+      "fetched_at": "2026-11-27T04:47:02.244Z",
       "error": null,
-      "ms": 308,
+      "ms": 256,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg.htm"
     },
     {
@@ -24,9 +24,9 @@
       "ok": true,
       "count": 1,
       "parsed": 15,
-      "fetched_at": "2026-11-27T03:47:03.448Z",
+      "fetched_at": "2026-11-27T04:47:02.302Z",
       "error": null,
-      "ms": 82,
+      "ms": 57,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg/xsksgg.htm"
     },
     {
@@ -35,9 +35,9 @@
       "ok": true,
       "count": 4,
       "parsed": 15,
-      "fetched_at": "2026-11-27T03:47:04.554Z",
+      "fetched_at": "2026-11-27T04:47:02.356Z",
       "error": null,
-      "ms": 1105,
+      "ms": 54,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/xsswgg.htm"
     },
     {
@@ -46,9 +46,9 @@
       "ok": true,
       "count": 0,
       "parsed": 15,
-      "fetched_at": "2026-11-27T03:47:05.119Z",
+      "fetched_at": "2026-11-27T04:47:02.427Z",
       "error": null,
-      "ms": 565,
+      "ms": 71,
       "final_url": "https://www.jwc.uestc.edu.cn/tzgg/jsswgg/jcgg.htm"
     },
     {
@@ -76,9 +76,9 @@
       "name": "班级群消息",
       "ok": true,
       "count": 3,
-      "fetched_at": "2026-11-27T03:47:06.457Z",
+      "fetched_at": "2026-11-27T04:47:03.131Z",
       "error": null,
-      "ms": 1338
+      "ms": 704
     }
   ],
   "items": [
@@ -100,7 +100,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-26T08:47:03.653Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "web-22a88de9590c",
@@ -120,7 +120,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-25T09:47:06.037Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "web-487bef91b3d2",
@@ -160,7 +160,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "web-cc7bcb378941",
@@ -181,7 +181,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "web-b80c06620d4a",
@@ -201,7 +201,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "qq-e5d947223635",
@@ -221,7 +221,7 @@
       "course": "",
       "no": "N003",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "qq-14c65d7ca141",
@@ -241,7 +241,7 @@
       "course": "",
       "no": "N001",
       "first_seen": "2026-11-17T05:47:02.448Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "web-4892e7c11d67",
@@ -262,7 +262,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-24T01:17:03.988Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "web-addfa7659c1a",
@@ -282,7 +282,7 @@
       "course": "",
       "no": "",
       "first_seen": "2026-11-16T08:47:11.173Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     },
     {
       "id": "qq-a8632e497b64",
@@ -303,7 +303,7 @@
       "course": "数据结构与算法I",
       "no": "N004",
       "first_seen": "2026-11-13T05:06:36.398Z",
-      "last_seen": "2026-11-27T03:47:06.906Z"
+      "last_seen": "2026-11-27T04:47:03.547Z"
     }
   ],
   "counts": {
